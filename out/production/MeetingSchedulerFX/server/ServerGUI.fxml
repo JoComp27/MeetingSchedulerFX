@@ -35,7 +35,7 @@
 
                         <Label text="Output Log:"/>
 
-                        <TextArea fx:id="outputLogTextarea"/>
+                        <TextArea fx:id="outputLogTextarea" editable="false"/>
 
                     </children>
                 </VBox>

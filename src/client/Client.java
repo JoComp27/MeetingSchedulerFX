@@ -564,7 +564,7 @@ public class Client implements Runnable{
             if(meetings.get(i).getMeetingNumber() == message.getMeetingNumber()){
                 if(meetings.get(i).getState() && meetings.get(i).getUserType()){
                     synchronized (meetings){
-                        meetings.get(i).getAcceptedMap().put(Integer.parseInt(message.getSocketAddress()), true);
+                        meetings.get(i).getAcceptedMap().put(message.getSocketAddress(), true);
                     }
                 }
             }
@@ -604,19 +604,45 @@ public class Client implements Runnable{
     }
 
     public ArrayList<Integer> getWidthdrawNumbers() {
-        return null;
+
+        ArrayList<Integer> result = new ArrayList<>();
+
+        for(ClientMeeting meeting : meetings){
+            if(!meeting.getUserType() && meeting.getState()){
+                result.add(meeting.getMeetingNumber());
+            }
+        }
+
+        return result;
     }
 
     public ArrayList<Integer> getAddNumbers() {
-        return null;
+        ArrayList<Integer> result = new ArrayList<>();
+
+        for(ClientMeeting meeting : meetings){
+            if(!meeting.getUserType() && meeting.getState() && !meeting.isCurrentAnswer() &&
+                    !availability.containsKey(CalendarUtil.calendarToString(meeting.getCalendar()))){
+                result.add(meeting.getMeetingNumber());
+            }
+        }
+
+        return result;
     }
 
     public ArrayList<Integer> getRequesterNumbers() {
-        return null;
+        ArrayList<Integer> result = new ArrayList<>();
+
+        for(ClientMeeting meeting : meetings){
+            if(meeting.getUserType() && meeting.getState()){
+                result.add(meeting.getMeetingNumber());
+            }
+        }
+
+        return result;
     }
 
-    public ArrayList<String> getLog() {
-        return null;
+    public List<String> getLog() {
+        return ClientLog;
     }
 
     public class ClientListen implements Runnable {

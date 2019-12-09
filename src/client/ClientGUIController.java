@@ -13,7 +13,11 @@ import javafx.scene.control.*;
 import requests.RequestType;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.chrono.Chronology;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -35,7 +39,7 @@ public class ClientGUIController implements Initializable {
     private Label clientNameLabel;
 
     @FXML
-    private RadioButton RequestRadioButton;
+    private RadioButton requestRadioButton;
     @FXML
     private RadioButton widthdrawRadioButton;
     @FXML
@@ -65,6 +69,77 @@ public class ClientGUIController implements Initializable {
     @FXML
     private void handleSendButtonAction(ActionEvent event) {
 
+        if(currentlySelectedRequest.equals(RequestType.Request)){
+
+            LocalDate date = datePicker.getValue();
+            String time = timeTextField.getText();
+            String minimum = minimumTextField.getText();
+            String participants = participantsTextField.getText();
+            String topic = topicTextField.getText();
+
+            if(date == null || time == null || minimum == null || participants == null){
+                System.out.println("One or more field is empty");
+                return;
+            }
+
+            int timeInt = 0;
+            int min = 0;
+
+            try{
+                timeInt = Integer.parseInt(time);
+                min = Integer.parseInt(minimum);
+            } catch(NumberFormatException e) {
+                System.out.println("INVALID TIME OR MINIMUM VALUES");
+                return;
+            }
+
+            List<String> participantsList = new ArrayList<>();
+            String[] participantsArray = participants.split(",");
+
+            if(min < participantsArray.length){
+                System.out.println("MIN IS LARGER THAN THE NUMBER OF INVITEES");
+                return;
+            }
+
+            for(String element : participantsArray){
+                participantsList.add(element.trim());
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), timeInt, 0, 0);
+
+            client.sendRequest(calendar, min, participantsList, topic);
+        }
+
+
+        else if(currentlySelectedRequest.equals(RequestType.Add)){
+
+            Integer meetingNumber = meetingNumberComboBox.getSelectionModel().getSelectedItem();
+
+            if(meetingNumber != null){
+                client.sendAdd(meetingNumber);
+            }
+
+        }
+        else if(currentlySelectedRequest.equals(RequestType.Withdraw)){
+
+            Integer meetingNumber = meetingNumberComboBox.getSelectionModel().getSelectedItem();
+
+            if(meetingNumber != null){
+                client.sendWithdraw(meetingNumber);
+            }
+
+        }
+        else if(currentlySelectedRequest.equals(RequestType.RequesterCancel)){
+
+            Integer meetingNumber = meetingNumberComboBox.getSelectionModel().getSelectedItem();
+
+            if(meetingNumber != null){
+                client.sendRequesterCancel(meetingNumber);
+            }
+
+        }
+
     }
 
     @Override
@@ -74,27 +149,27 @@ public class ClientGUIController implements Initializable {
         availableMeetingNumber = new ArrayList<>();
 
         requestTypesToggleGroup = new ToggleGroup();
-        RequestRadioButton.setToggleGroup(requestTypesToggleGroup);
+        requestRadioButton.setToggleGroup(requestTypesToggleGroup);
         widthdrawRadioButton.setToggleGroup(requestTypesToggleGroup);
         addRadioButton.setToggleGroup(requestTypesToggleGroup);
         requesterCancel.setToggleGroup(requestTypesToggleGroup);
 
-        RequestRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == true) {
+        requestRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
                 currentlySelectedRequest = RequestType.Request;
                 refreshElements();
             }
         });
 
         widthdrawRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == true) {
+            if (newValue) {
                 currentlySelectedRequest = RequestType.Withdraw;
                 refreshElements();
             }
         });
 
         addRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == true) {
+            if (newValue) {
                 currentlySelectedRequest = RequestType.Add;
                 refreshElements();
             }
@@ -102,12 +177,21 @@ public class ClientGUIController implements Initializable {
 
 
         requesterCancel.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == true) {
+            if (newValue) {
                 currentlySelectedRequest = RequestType.RequesterCancel;
                 refreshElements();
             }
         });
 
+        Platform.runLater(() -> {
+            meetingNumberComboBox.setDisable(true);
+            datePicker.setDisable(true);
+            timeTextField.setDisable(true);
+            minimumTextField.setDisable(true);
+            participantsTextField.setDisable(true);
+            topicTextField.setDisable(true);
+            sendButton.setDisable(true);
+        });
 
     }
 
@@ -116,6 +200,13 @@ public class ClientGUIController implements Initializable {
         this.client = new Client(name);
         Thread thread = new Thread(client);
         thread.start();
+
+        Platform.runLater(() -> {
+            clientNameLabel.setText("Client Name: " + name);
+        });
+
+        Thread autoRefreshThread = new Thread(new AutoRefresh());
+        autoRefreshThread.start();
 
     }
 
@@ -137,6 +228,19 @@ public class ClientGUIController implements Initializable {
 
         Platform.runLater(() -> {
 
+            if(currentlySelectedRequest == null){
+
+                meetingNumberComboBox.setDisable(true);
+                datePicker.setDisable(true);
+                timeTextField.setDisable(true);
+                minimumTextField.setDisable(true);
+                participantsTextField.setDisable(true);
+                topicTextField.setDisable(true);
+                sendButton.setDisable(true);
+
+                return;
+            }
+
             boolean isRequest = false;
 
             if(currentlySelectedRequest.equals(RequestType.Request)){
@@ -154,7 +258,7 @@ public class ClientGUIController implements Initializable {
 
     }
 
-    private void updateOutputTextArea(ArrayList<String> outputMessages){
+    private void updateOutputTextArea(List<String> outputMessages){
 
         Platform.runLater(() -> {
 
@@ -170,6 +274,10 @@ public class ClientGUIController implements Initializable {
     }
 
     private void updateMeetingNumberComboBox(){
+
+        if(currentlySelectedRequest == null){
+            return;
+        }
 
         ArrayList<Integer> meetingNumbers;
 
@@ -215,6 +323,24 @@ public class ClientGUIController implements Initializable {
 
         }
 
+    }
+
+    private class AutoRefresh implements Runnable{
+
+        @Override
+        public void run() {
+
+            while(true){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                refreshElements();
+            }
+
+        }
     }
 
 }
