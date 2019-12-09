@@ -50,58 +50,6 @@ public class Client implements Runnable{
 
     }
 
-    public static void main(String args[]) throws IOException {
-
-        if(args.length < 1){
-            System.err.println("MISSING ARGUMENTS WHILE STARTING CLIENT");
-            return;
-        }
-
-        String clientName = args[0];
-
-        Client client = new Client(clientName);
-
-        String fileName = "saveFile_" + clientName;
-
-        //Checking if previous
-        File saveFile = new File(fileName + ".txt");
-
-        if(saveFile.exists()){
-
-            //Add CLI to check if user wants to restore user or not.
-
-            System.out.println("It seems that a restore file is available and could be loaded onto the" +
-                    "client\nDo you wish to restore it?");
-
-            String answer = "";
-
-            Scanner scanner = new Scanner(System.in);
-
-            while(!answer.equals("y") && !answer.equals("n")){
-
-                answer = scanner.nextLine().trim();
-
-                switch (answer) {
-                    case "y":
-                        System.out.println("Save will be restored for client " + clientName);
-                        client.restoreFromSave(fileName);
-                        break;
-                    case "n":
-                        System.out.println("Save will not be restored for client");
-                        break;
-                    default:
-                        System.out.println("INVALID SAVE RESTORE ANSWER");
-                }
-
-            }
-
-
-        }
-
-        client.run();
-
-    }
-
     private void sendMessageToServer(String message) throws IOException {
 
         // convert the String input into the byte array.
@@ -603,6 +551,10 @@ public class Client implements Runnable{
         }
     }
 
+    public String getClientName() {
+        return clientName;
+    }
+
     public ArrayList<Integer> getWidthdrawNumbers() {
 
         ArrayList<Integer> result = new ArrayList<>();
@@ -793,7 +745,7 @@ public class Client implements Runnable{
 
     }
 
-    private void restoreFromSave(String saveFile) {
+    public void restoreFromSave(String saveFile) {
 
         ArrayList<String> messageList = FileReaderWriter.ReadFile(saveFile);
 

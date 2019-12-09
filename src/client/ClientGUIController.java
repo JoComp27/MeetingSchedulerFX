@@ -210,6 +210,11 @@ public class ClientGUIController implements Initializable {
 
     }
 
+    public void restoreFromSave(String fileName){
+        client.restoreFromSave(fileName);
+    }
+
+
     private void refreshElements() {
 
         //Get Outputs from client
@@ -304,6 +309,10 @@ public class ClientGUIController implements Initializable {
         if(meetingNumberComboBox.getItems().isEmpty()){
             meetingNumberComboBox.getItems().setAll(meetingNumbers);
         } else {
+
+            if(meetingNumberComboBox.getItems().equals(meetingNumbers)){
+                return;
+            }
 
             Integer selectedItem = meetingNumberComboBox.getSelectionModel().getSelectedItem();
             if(selectedItem != null && meetingNumbers.contains(selectedItem)){

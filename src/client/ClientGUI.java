@@ -11,6 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.util.Scanner;
+
 /**
  *
  * @author GamingPC
@@ -25,9 +28,48 @@ public class ClientGUI extends Application {
         Parent root = (Parent)fxmlLoader.load();
         
         ClientGUIController controller = fxmlLoader.<ClientGUIController>getController();
-        
-        controller.initializeClient(getParameters().getRaw().get(0));
-        
+
+        String clientName = getParameters().getRaw().get(0);
+
+        controller.initializeClient(clientName);
+
+        String fileName = "saveFile_" + clientName;
+
+        //Checking if previous
+        File saveFile = new File(fileName + ".txt");
+
+        if(saveFile.exists()){
+
+            //Add CLI to check if user wants to restore user or not.
+
+            System.out.println("It seems that a restore file is available and could be loaded onto the" +
+                    "client\nDo you wish to restore it?");
+
+            String answer = "";
+
+            Scanner scanner = new Scanner(System.in);
+
+            while(!answer.equals("y") && !answer.equals("n")){
+
+                answer = scanner.nextLine().trim();
+
+                switch (answer) {
+                    case "y":
+                        System.out.println("Save will be restored for client " + clientName);
+                        controller.restoreFromSave(fileName);
+                        break;
+                    case "n":
+                        System.out.println("Save will not be restored for client");
+                        break;
+                    default:
+                        System.out.println("INVALID SAVE RESTORE ANSWER");
+                }
+
+            }
+
+
+        }
+
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

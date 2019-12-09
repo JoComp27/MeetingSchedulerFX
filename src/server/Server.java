@@ -42,39 +42,7 @@ public class Server implements Runnable{
 
         Server server = new Server();
 
-        //Checking if previous
-        File saveFile = new File("server.txt");
 
-        if(saveFile.exists()){
-
-            //Add CLI to check if user wants to restore user or not.
-
-            System.out.println("It seems that a restore file is available and could be loaded onto the" +
-                    "server\n Do you wish to restore it?");
-
-            String answer = "";
-
-            Scanner scanner = new Scanner(System.in);
-
-            while(!answer.equals("y") && !answer.equals("n")){
-
-                answer = scanner.nextLine().trim();
-
-                switch (answer) {
-                    case "y":
-                        System.out.println("Save will be restored for server");
-                        server.loadServer();
-                        break;
-                    case "n":
-                        System.out.println("Save will not be restored for client");
-                        break;
-                    default:
-                        System.out.println("INVALID SAVE RESTORE ANSWER");
-                }
-            }
-
-
-        }
 
         server.run();
     }
@@ -1146,6 +1114,10 @@ public class Server implements Runnable{
         }
     }
 
+    public List<String> getServerLog() {
+        return ServerLog;
+    }
+
     public class ServerCommand implements Runnable {
 
         String message = "";
@@ -1250,7 +1222,7 @@ public class Server implements Runnable{
         return result;
     }
 
-    private void loadServer(){
+    public void loadServer(){
 
         ArrayList<String> fileString = FileReaderWriter.ReadFile("server");
 
