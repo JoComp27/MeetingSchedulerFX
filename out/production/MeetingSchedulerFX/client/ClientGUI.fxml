@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
+<AnchorPane id="AnchorPane" prefHeight="720" prefWidth="1280" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientGUIController">
+    <children>
+
+        <GridPane>
+            <children>
+                <Label fx:id="clientNameLabel" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+                <VBox GridPane.rowIndex="1" GridPane.columnIndex="0">
+                    <children>
+                        <RadioButton fx:id="requestRadioButton" text="Request"/>
+                        <RadioButton fx:id="widthdrawRadioButton" text="Widthdraw"/>
+                        <RadioButton fx:id="addRadioButton" text="Add"/>
+                        <RadioButton fx:id="requesterCancel" text="RequesterCancel"/>
+                    </children>
+                </VBox>
+
+                <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.rowSpan="2">
+                    <children>
+
+                        <GridPane>
+
+                            <Label text="Meeting Number: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                            <ComboBox fx:id="meetingNumberComboBox" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                            <Label text="Date: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                            <Label text="Time: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                            <TextField fx:id="timeTextField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                            <Label text="Minimum: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                            <TextField fx:id="minimumTextField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                            <Label text="Participants: " GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                            <TextField fx:id="participantsTextField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                            <Label text="Topic: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                            <TextField fx:id="topicTextField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+                            <Button fx:id="sendButton" onAction="#handleSendButtonAction" text="Send Message" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+
+                        </GridPane>
+
+                        <Label text="Output Log:"/>
+
+                        <TextArea fx:id="outputLogTextarea" editable="false"/>
+
+                    </children>
+                </VBox>
+
+            </children>
+        </GridPane>
+
+    </children>
+</AnchorPane>

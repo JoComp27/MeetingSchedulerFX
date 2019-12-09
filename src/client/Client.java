@@ -473,15 +473,19 @@ public class Client implements Runnable{
     }
 
     public ArrayList<Integer> getWidthdrawNumbers() {
+        return null;
     }
 
     public ArrayList<Integer> getAddNumbers() {
+        return null;
     }
 
     public ArrayList<Integer> getRequesterNumbers() {
+        return null;
     }
 
     public ArrayList<String> getLog() {
+        return null;
     }
 
     public class ClientListen implements Runnable {
