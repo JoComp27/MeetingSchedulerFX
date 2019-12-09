@@ -25,6 +25,14 @@ public class ConfirmMessage extends Message {
         return roomNumber;
     }
 
+    public void setMeetingNumber(Integer meetingNumber) {
+        this.meetingNumber = meetingNumber;
+    }
+
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
     @Override
     public String serialize() {
         return requestType.ordinal() + "$" + meetingNumber + "$" + roomNumber;

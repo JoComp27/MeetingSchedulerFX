@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e186d029-4ea3-421e-bf3b-592a8ba389f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MeetingSchedulerFX.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ClientMeeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ClientMeeting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/requests/ConfirmMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests/ConfirmMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/requests/NotScheduledMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests/NotScheduledMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/requests/ScheduledMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests/ScheduledMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/requests/ServerCancelMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests/ServerCancelMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/ServerMeeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerMeeting.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,5 +74,11 @@
       <updated>1575863470728</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="336" y="440" width="737" height="596" key="find.popup" timestamp="1575865122365">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="336" y="440" width="737" height="596" key="find.popup/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1575865122365" />
   </component>
 </project>

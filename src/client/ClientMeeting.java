@@ -109,6 +109,10 @@ public class ClientMeeting {
         this.roomNumber = roomNumber;
     }
 
+    public void setMeetingNumber(int meetingNumber) {
+        this.meetingNumber = meetingNumber;
+    }
+
     public String serialize(){
         String result = "";
 

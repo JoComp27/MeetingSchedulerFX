@@ -1,6 +1,6 @@
 package requests;
 
-public class ScheduledMessage extends Message {
+public class ScheduledMessage extends Message{
 
     Integer requestNumber;
     Integer meetingNumber;
@@ -39,6 +39,22 @@ public class ScheduledMessage extends Message {
         return listOfConfirmedParticipants;
     }
 
+    public void setRequestNumber(Integer requestNumber) {
+        this.requestNumber = requestNumber;
+    }
+
+    public void setMeetingNumber(Integer meetingNumber) {
+        this.meetingNumber = meetingNumber;
+    }
+
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public void setListOfConfirmedParticipants(String[] listOfConfirmedParticipants) {
+        this.listOfConfirmedParticipants = listOfConfirmedParticipants;
+    }
+
     @Override
     public String serialize() {
         String answer = "";
@@ -52,7 +68,7 @@ public class ScheduledMessage extends Message {
                 answer += listOfConfirmedParticipants[i];
                 break;
             }
-            answer += listOfConfirmedParticipants[i] + ",";
+            answer += listOfConfirmedParticipants[i] + "%";
         }
 
         return answer;
@@ -63,11 +79,11 @@ public class ScheduledMessage extends Message {
 
         String[] splitMessage = message.split("\\$");
 
-        String[] participants = splitMessage[4].split(",");
+        String[] participants = splitMessage[3].split("%");
 
-        this.requestNumber = Integer.parseInt(splitMessage[1]);
-        this.meetingNumber = Integer.parseInt(splitMessage[2]);
-        this.roomNumber = Integer.parseInt(splitMessage[3]);
+        this.requestNumber = Integer.parseInt(splitMessage[0]);
+        this.meetingNumber = Integer.parseInt(splitMessage[1]);
+        this.roomNumber = Integer.parseInt(splitMessage[2]);
         this.listOfConfirmedParticipants = participants;
 
     }
