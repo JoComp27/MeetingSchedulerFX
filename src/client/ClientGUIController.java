@@ -96,7 +96,7 @@ public class ClientGUIController implements Initializable {
             List<String> participantsList = new ArrayList<>();
             String[] participantsArray = participants.split(",");
 
-            if(min < participantsArray.length){
+            if(min > participantsArray.length){
                 System.out.println("MIN IS LARGER THAN THE NUMBER OF INVITEES");
                 return;
             }
@@ -258,6 +258,7 @@ public class ClientGUIController implements Initializable {
             minimumTextField.setDisable(!isRequest);
             participantsTextField.setDisable(!isRequest);
             topicTextField.setDisable(!isRequest);
+            sendButton.setDisable(false);
 
         });
 

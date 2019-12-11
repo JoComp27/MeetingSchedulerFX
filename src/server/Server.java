@@ -37,16 +37,6 @@ public class Server implements Runnable{
 
     }
 
-    public static void main(String[] args){
-        System.out.println("SERVER LAUNCHED");
-
-        Server server = new Server();
-
-
-
-        server.run();
-    }
-
     @Override
     public void run() {
         /**Create new server and binds to a free port. From source of the internet
@@ -1116,6 +1106,24 @@ public class Server implements Runnable{
 
     public List<String> getServerLog() {
         return ServerLog;
+    }
+
+    public List<Integer> getMeetingNumbers(){
+        List<Integer> meetingNumbers=  new ArrayList<>();
+
+        for (Map.Entry<String, ServerMeeting> stringServerMeetingEntry : meetingMap.entrySet()) {
+            stringServerMeetingEntry.getValue().getId();
+        }
+
+        return meetingNumbers;
+    }
+
+    public void sendRoomChangeMessage(int meetingNumber, int newRoomNumber){
+
+        RoomChangeMessage roomChangeMessage = new RoomChangeMessage(meetingNumber, newRoomNumber);
+
+        UdpSend.sendMessage(roomChangeMessage.serialize(), serverSocket, clientAddressMap.get(meetingMap.get(String.valueOf(meetingNumber)).getOrganizer()));
+
     }
 
     public class ServerCommand implements Runnable {

@@ -10,8 +10,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.List;
@@ -26,20 +25,61 @@ public class ServerGUIController implements Initializable {
     private Server server;
 
     @FXML
-    private Label label;
+    private ComboBox<Integer> meetingNumberComboBox;
+    @FXML
+    private TextField newRoomTextField;
+    @FXML
+    private Button sendButton;
 
     @FXML
     private TextArea outputLogTextarea;
-    
+
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+
+        if(meetingNumberComboBox.getSelectionModel().getSelectedItem() == null ||
+            newRoomTextField.getText() == null){
+            return;
+        }
+
+        Integer meetingNumber = meetingNumberComboBox.getSelectionModel().getSelectedItem();
+        Integer newRoomNumber = Integer.parseInt(newRoomTextField.getText());
+
+        server.sendRoomChangeMessage(meetingNumber, newRoomNumber);
+
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
+        meetingNumberComboBox.onMouseClickedProperty().addListener((observable, oldValue, newValue) -> {
+            if(meetingNumberComboBox.getSelectionModel().getSelectedItem() != null && newRoomTextField.getText() != null){
+                Platform.runLater(() -> {
+                    sendButton.setDisable(false);
+                });
+            } else {
+                Platform.runLater(() -> {
+                    sendButton.setDisable(true);
+                });
+            }
+        });
+
+        newRoomTextField.onInputMethodTextChangedProperty().addListener((observable, oldValue, newValue) -> {
+            if(meetingNumberComboBox.getSelectionModel().getSelectedItem() != null && newRoomTextField.getText() != null){
+                Platform.runLater(() -> {
+                    sendButton.setDisable(false);
+                });
+            } else {
+                Platform.runLater(() -> {
+                    sendButton.setDisable(true);
+                });
+            }
+        });
+
+        Platform.runLater(() -> {
+            sendButton.setDisable(true);
+        });
+
     }
 
     public void initializeServer(){
@@ -56,6 +96,8 @@ public class ServerGUIController implements Initializable {
 
         //Get Outputs from client
         updateOutputTextArea(server.getServerLog());
+
+
 
     }
 

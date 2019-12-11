@@ -14,3 +14,8 @@ Client[9/11/2019 0:27:10]: Register from 'test' 15$test$49739
 Client[9/11/2019 0:28:52]: Register from 'test' 15$test$55644
 Client[9/11/2019 0:29:16]: Register from 'test' 15$test$50743
 Client[9/11/2019 0:29:39]: Register from 'test' 15$test$61108
+Client[11/11/2019 12:59:36]: Register from 'test' 15$test$59049
+Client[11/11/2019 13:10:20]: Register from 'test' 15$test$50850
+Client[11/11/2019 13:11:45]: Register from 'test' 15$test$54861
+Client[11/11/2019 13:14:7]: Register from 'test' 15$test$63384
+Client[11/11/2019 13:14:40]: Request from 'test' 9$1$2020:0:11:1$2$a%b%c$test meeting

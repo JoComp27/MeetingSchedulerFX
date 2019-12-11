@@ -10,15 +10,15 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.RadioButton?>
-<AnchorPane id="AnchorPane" prefHeight="720" prefWidth="1280" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server.ServerGUIController">
+<AnchorPane id="AnchorPane" prefHeight="400" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server.ServerGUIController">
     <children>
 
         <GridPane>
             <children>
 
-                <Label text="Server" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Server" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
 
-                <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
 
                         <GridPane>
@@ -29,7 +29,7 @@
                             <Label text="New Room Number: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                             <TextField fx:id="newRoomTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                            <Button fx:id="sendButton" text="Send Message" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                            <Button fx:id="sendButton" text="Send Message" onAction="#handleButtonAction" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
 
                         </GridPane>
 

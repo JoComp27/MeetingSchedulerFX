@@ -82,55 +82,56 @@ public class Client implements Runnable{
 
         System.out.println("Local port is: " + ds.getLocalPort());
         Scanner sc = new Scanner(System.in);
+
         // loop while user not enters "bye"
-        while (true) {
-            String inp = sc.nextLine();
-
-            if (!inp.isEmpty()) {
-
-                String[] inputMessage = inp.trim().split("\\$");
-                //int messageType = Integer.parseInt(inputMessage[0]);
-                System.out.println("InputMessage: " + inputMessage[0]);
-                //System.out.println("receivedMessage Value of: " + RequestType.valueOf(inputMessage[0]));
-                RequestType receivedRequestType = RequestType.valueOf(inputMessage[0]);
-
-                switch (receivedRequestType) {
-                    case Request:
-                        RequestMessage requestMessage = new RequestMessage();
-                        requestMessage.deserialize(inp);
-                        sendRequest(requestMessage.getCalendar(), requestMessage.getMinimum(), requestMessage.getParticipants(), requestMessage.getTopic());
-                        //UdpSend.sendMessage(requestMessage.serialize(), ds, serverAddress);
-                        break;
-                    case Add:
-                        AddMessage addMessage = new AddMessage();
-                        addMessage.deserialize(inp);
-                        //sendAdd(addMessage.getMeetingNumber());
-                        //System.out.println("Did it send?");
-                        UdpSend.sendMessage(addMessage.serialize(), ds, serverAddress);
-                        break;
-                    case RequesterCancel:
-                        RequesterCancelMessage requesterCancelMessage = new RequesterCancelMessage();
-                        requesterCancelMessage.deserialize(inp);
-                        //sendRequesterCancel(requesterCancelMessage.getMeetingNumber());
-                        UdpSend.sendMessage(requesterCancelMessage.serialize(), ds, serverAddress);
-                        break;
-                    case Withdraw:
-                        WithdrawMessage withdrawMessage = new WithdrawMessage();
-                        withdrawMessage.deserialize(inp);
-                        //sendWithdraw(withdrawMessage.getMeetingNumber());
-                        UdpSend.sendMessage(withdrawMessage.serialize(), ds, serverAddress);
-                        break;
-                    default:
-                        System.out.println("Request type does not correspond. Exiting.");
-                        break;
-                }
-
-                //sendMessageToServer(inp);
-                // break the loop if user enters "bye"
-                if (inp.equals("bye"))
-                    break;
-            }
-        }
+//        while (true) {
+//            String inp = sc.nextLine();
+//
+//            if (!inp.isEmpty()) {
+//
+//                String[] inputMessage = inp.trim().split("\\$");
+//                //int messageType = Integer.parseInt(inputMessage[0]);
+//                System.out.println("InputMessage: " + inputMessage[0]);
+//                //System.out.println("receivedMessage Value of: " + RequestType.valueOf(inputMessage[0]));
+//                RequestType receivedRequestType = RequestType.valueOf(inputMessage[0]);
+//
+//                switch (receivedRequestType) {
+//                    case Request:
+//                        RequestMessage requestMessage = new RequestMessage();
+//                        requestMessage.deserialize(inp);
+//                        sendRequest(requestMessage.getCalendar(), requestMessage.getMinimum(), requestMessage.getParticipants(), requestMessage.getTopic());
+//                        //UdpSend.sendMessage(requestMessage.serialize(), ds, serverAddress);
+//                        break;
+//                    case Add:
+//                        AddMessage addMessage = new AddMessage();
+//                        addMessage.deserialize(inp);
+//                        //sendAdd(addMessage.getMeetingNumber());
+//                        //System.out.println("Did it send?");
+//                        UdpSend.sendMessage(addMessage.serialize(), ds, serverAddress);
+//                        break;
+//                    case RequesterCancel:
+//                        RequesterCancelMessage requesterCancelMessage = new RequesterCancelMessage();
+//                        requesterCancelMessage.deserialize(inp);
+//                        //sendRequesterCancel(requesterCancelMessage.getMeetingNumber());
+//                        UdpSend.sendMessage(requesterCancelMessage.serialize(), ds, serverAddress);
+//                        break;
+//                    case Withdraw:
+//                        WithdrawMessage withdrawMessage = new WithdrawMessage();
+//                        withdrawMessage.deserialize(inp);
+//                        //sendWithdraw(withdrawMessage.getMeetingNumber());
+//                        UdpSend.sendMessage(withdrawMessage.serialize(), ds, serverAddress);
+//                        break;
+//                    default:
+//                        System.out.println("Request type does not correspond. Exiting.");
+//                        break;
+//                }
+//
+//                //sendMessageToServer(inp);
+//                // break the loop if user enters "bye"
+//                if (inp.equals("bye"))
+//                    break;
+//            }
+//        }
 
     }
 
