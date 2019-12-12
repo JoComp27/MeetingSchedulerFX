@@ -81,57 +81,6 @@ public class Client implements Runnable{
         sendRegistrationMessage();
 
         System.out.println("Local port is: " + ds.getLocalPort());
-        Scanner sc = new Scanner(System.in);
-
-        // loop while user not enters "bye"
-//        while (true) {
-//            String inp = sc.nextLine();
-//
-//            if (!inp.isEmpty()) {
-//
-//                String[] inputMessage = inp.trim().split("\\$");
-//                //int messageType = Integer.parseInt(inputMessage[0]);
-//                System.out.println("InputMessage: " + inputMessage[0]);
-//                //System.out.println("receivedMessage Value of: " + RequestType.valueOf(inputMessage[0]));
-//                RequestType receivedRequestType = RequestType.valueOf(inputMessage[0]);
-//
-//                switch (receivedRequestType) {
-//                    case Request:
-//                        RequestMessage requestMessage = new RequestMessage();
-//                        requestMessage.deserialize(inp);
-//                        sendRequest(requestMessage.getCalendar(), requestMessage.getMinimum(), requestMessage.getParticipants(), requestMessage.getTopic());
-//                        //UdpSend.sendMessage(requestMessage.serialize(), ds, serverAddress);
-//                        break;
-//                    case Add:
-//                        AddMessage addMessage = new AddMessage();
-//                        addMessage.deserialize(inp);
-//                        //sendAdd(addMessage.getMeetingNumber());
-//                        //System.out.println("Did it send?");
-//                        UdpSend.sendMessage(addMessage.serialize(), ds, serverAddress);
-//                        break;
-//                    case RequesterCancel:
-//                        RequesterCancelMessage requesterCancelMessage = new RequesterCancelMessage();
-//                        requesterCancelMessage.deserialize(inp);
-//                        //sendRequesterCancel(requesterCancelMessage.getMeetingNumber());
-//                        UdpSend.sendMessage(requesterCancelMessage.serialize(), ds, serverAddress);
-//                        break;
-//                    case Withdraw:
-//                        WithdrawMessage withdrawMessage = new WithdrawMessage();
-//                        withdrawMessage.deserialize(inp);
-//                        //sendWithdraw(withdrawMessage.getMeetingNumber());
-//                        UdpSend.sendMessage(withdrawMessage.serialize(), ds, serverAddress);
-//                        break;
-//                    default:
-//                        System.out.println("Request type does not correspond. Exiting.");
-//                        break;
-//                }
-//
-//                //sendMessageToServer(inp);
-//                // break the loop if user enters "bye"
-//                if (inp.equals("bye"))
-//                    break;
-//            }
-//        }
 
     }
 
@@ -284,15 +233,7 @@ public class Client implements Runnable{
 
     public void sendAdd(int meetingNumber){
 
-        //System.out.println("Went in Method but nothing else.");
-        System.out.println("Meetings size: " + meetings.size());
-
         for(int i = 0; i < meetings.size(); i++){
-
-            System.out.println("RIP");
-            System.out.println("Loop #: " + i);
-            System.out.println("Meetings meeting number: " + meetings.get(i).getMeetingNumber());
-            //System.out.println("Deserialized meetingNumber: " + meetingNumber + "please");
 
             if(meetingNumber == meetings.get(i).getMeetingNumber()){
                 if(!meetings.get(i).getUserType()) {
@@ -398,7 +339,7 @@ public class Client implements Runnable{
             }
 
             //Send Accept
-            UdpSend.sendMessage(new AcceptMessage(newMeeting.getMeetingNumber()).serialize(), ds, serverAddress);
+            sendAccept(newMeeting.getMeetingNumber());
 
         } else {
             newMeeting.setCurrentAnswer(false);
@@ -407,7 +348,7 @@ public class Client implements Runnable{
             }
 
             //Send Reject
-            UdpSend.sendMessage(new RejectMessage(newMeeting.getMeetingNumber()).serialize(), ds, serverAddress);
+            sendReject(newMeeting.getMeetingNumber());
         }
 
         } else {
@@ -419,9 +360,15 @@ public class Client implements Runnable{
             }
 
             //Send Accept
-            UdpSend.sendMessage(new AcceptMessage(newMeeting.getMeetingNumber()).serialize(), ds, serverAddress);
+            sendAccept(newMeeting.getMeetingNumber());
 
         }
+
+        Calendar calendar = Calendar.getInstance();
+        String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
+                + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
+        FileReaderWriter.WriteFile("log", currentTime + "Invite for '" + clientName + "'" + message.serialize() + "\n", true);
+        ClientLog.add(currentTime + "Invite for '" + clientName + "'" + message.serialize());
 
     }
 
@@ -514,6 +461,12 @@ public class Client implements Runnable{
                 if(meetings.get(i).getState() && meetings.get(i).getUserType()){
                     synchronized (meetings){
                         meetings.get(i).getAcceptedMap().put(message.getSocketAddress(), true);
+
+                        Calendar calendar = Calendar.getInstance();
+                        String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
+                                + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
+                        FileReaderWriter.WriteFile("log", currentTime + "Add for '" + clientName + "' " + message.serialize() + "\n", true);
+                        ClientLog.add(currentTime + "Add for '" + clientName + "' " + message.serialize());
                     }
                 }
             }
@@ -527,6 +480,12 @@ public class Client implements Runnable{
                 if(meetings.get(i).getState()){
                     synchronized (meetings){
                         meetings.get(i).setRoomNumber(message.getNewRoomNumber());
+
+                        Calendar calendar = Calendar.getInstance();
+                        String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
+                                + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
+                        FileReaderWriter.WriteFile("log", currentTime + "Room change for '" + clientName + "' " + message.serialize() + "\n", true);
+                        ClientLog.add(currentTime + "Room change for '" + clientName + "' " + message.serialize());
                     }
                 }
             }

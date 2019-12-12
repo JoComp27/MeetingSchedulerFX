@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -97,7 +98,40 @@ public class ServerGUIController implements Initializable {
         //Get Outputs from client
         updateOutputTextArea(server.getServerLog());
 
+        //Update Meeting Number list
+        updateMeetingNumberComboBox();
 
+    }
+
+    private void updateMeetingNumberComboBox(){
+
+        List<Integer> meetingNumbers = server.getMeetingNumbers();
+
+        if(meetingNumberComboBox.getItems().isEmpty()){
+            meetingNumberComboBox.getItems().setAll(meetingNumbers);
+        } else {
+
+            if(meetingNumberComboBox.getItems().equals(meetingNumbers)){
+                return;
+            }
+
+            Integer selectedItem = meetingNumberComboBox.getSelectionModel().getSelectedItem();
+            if(selectedItem != null && meetingNumbers.contains(selectedItem)){
+
+                Platform.runLater(() -> {
+                    meetingNumberComboBox.getItems().setAll(meetingNumbers);
+                    meetingNumberComboBox.getSelectionModel().select(selectedItem);
+                });
+
+            } else {
+
+                Platform.runLater(() -> {
+                    meetingNumberComboBox.getItems().setAll(meetingNumbers);
+                });
+
+            }
+
+        }
 
     }
 

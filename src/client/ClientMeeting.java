@@ -36,6 +36,7 @@ public class ClientMeeting {
         this.calendar = inviteMessage.getCalendar();
         this.state = false;
         this.userType = false;
+        this.acceptedMap = new HashMap<>();
 
     }
 
@@ -46,6 +47,7 @@ public class ClientMeeting {
         this.state = false;
         this.userType = true;
         this.currentAnswer = true;
+        this.acceptedMap = new HashMap<>();
     }
 
     public void receiveConfirmMessage(ConfirmMessage confirmMessage){

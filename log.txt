@@ -19,3 +19,34 @@ Client[11/11/2019 13:10:20]: Register from 'test' 15$test$50850
 Client[11/11/2019 13:11:45]: Register from 'test' 15$test$54861
 Client[11/11/2019 13:14:7]: Register from 'test' 15$test$63384
 Client[11/11/2019 13:14:40]: Request from 'test' 9$1$2020:0:11:1$2$a%b%c$test meeting
+Client[11/11/2019 17:33:58]: Register from 'test' 15$test$52465
+Client[11/11/2019 17:46:50]: Request from 'test' 9$1$2020:0:11:1$2$a%b$test meeting
+Client[11/11/2019 17:47:56]: Register from 'test' 15$test$60906
+Client[11/11/2019 17:48:20]: Request from 'test' 9$1$2020:0:11:1$1$a%b$testing meeting
+Client[11/11/2019 20:7:49]: Register from 'test' 15$test$50000
+Client[11/11/2019 20:12:11]: Register from 'test' 15$test$58804
+Client[11/11/2019 20:22:12]: Register from 'test' 15$test$60053
+Client[11/11/2019 20:23:57]: Register from 'test' 15$test$51774
+Client[11/11/2019 20:27:3]: Register from 'test' 15$test$58007
+Server[11/11/2019 20:27:3]: Registered 'test'
+Client[11/11/2019 21:42:11]: Register from 'test' 15$test$56564
+Server[11/11/2019 21:42:11]: Registered 'test'
+Client[11/11/2019 21:42:52]: Request from 'test' 9$1$2020:0:11:1$1$a%b$test meeting
+Server[11/11/2019 21:42:52]: Not scheduled 'test' 5$1$2020:0:11:1$1$$test meeting
+Client[11/11/2019 21:42:57]: Not scheduled for 'test' 5$1$2020:0:11:1$1$%$test meeting
+Client[11/11/2019 21:45:36]: Request from 'test' 9$2$2020:0:11:2$1$a%b$test meeting
+Server[11/11/2019 21:45:36]: Not scheduled 'test' 5$2$2020:0:11:2$1$$test meeting
+Client[11/11/2019 21:45:41]: Not scheduled for 'test' 5$2$2020:0:11:2$1$%$test meeting
+Server[11/11/2019 21:52:10]: Registered 'test'
+Client[11/11/2019 21:52:10]: Register from 'test' 15$test$58472
+Client[11/11/2019 21:52:43]: Request from 'test' 9$1$120:0:3:1$1$a%b$new test meeting
+Server[11/11/2019 21:52:43]: Not scheduled 'test' 5$1$120:0:3:1$1$$new test meeting
+Client[11/11/2019 21:52:48]: Not scheduled for 'test' 5$1$120:0:3:1$1$%$new test meeting
+Client[11/11/2019 22:36:37]: Register from 'test' 15$test$51099
+Client[11/11/2019 22:36:53]: Request from 'test' 9$1$119:11:3:1$1$a%b$1
+Client[11/11/2019 22:38:41]: Register from 'test' 15$test$49747
+Client[11/11/2019 22:38:53]: Request from 'test' 9$1$119:11:3:1$1$a%b$1
+Client[11/11/2019 22:39:28]: Register from 'test' 15$test$56648
+Client[11/11/2019 22:39:40]: Request from 'test' 9$1$2020:0:11:1$1$a%b$asd
+Client[11/11/2019 22:39:59]: Register from 'test' 15$test$56655
+Client[11/11/2019 22:40:12]: Request from 'test' 9$1$2019:11:11:1$1$a%b$asd

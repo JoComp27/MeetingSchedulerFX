@@ -13,12 +13,11 @@ import javafx.scene.control.*;
 import requests.RequestType;
 
 import java.net.URL;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.chrono.Chronology;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  *
@@ -105,8 +104,17 @@ public class ClientGUIController implements Initializable {
                 participantsList.add(element.trim());
             }
 
+            int year = date.getYear();
+            int month = date.getMonthValue()-1;
+            int day = date.getDayOfMonth();
+            int hour = timeInt;
+
+            System.out.println("Year: " + year + ", Month: " + month + ", Day: " + day + ", Hour: " + hour);
+
             Calendar calendar = Calendar.getInstance();
-            calendar.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), timeInt, 0, 0);
+            calendar.set(year, month, day, timeInt, 0, 0);
+
+
 
             client.sendRequest(calendar, min, participantsList, topic);
         }

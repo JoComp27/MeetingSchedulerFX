@@ -38,7 +38,7 @@ public class ServerGUI extends Application {
 
             //Add CLI to check if user wants to restore user or not.
 
-            System.out.println("It seems that a restore file is available and could be loaded onto the" +
+            System.out.println("It seems that a restore file is available and could be loaded onto the " +
                     "server\n Do you wish to restore it?");
 
             String answer = "";
@@ -55,7 +55,7 @@ public class ServerGUI extends Application {
                         controller.loadServer();
                         break;
                     case "n":
-                        System.out.println("Save will not be restored for client");
+                        System.out.println("Save will not be restored for server");
                         break;
                     default:
                         System.out.println("INVALID SAVE RESTORE ANSWER");

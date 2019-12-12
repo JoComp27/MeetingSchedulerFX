@@ -40,10 +40,10 @@ public class RegisterMessage extends Message {
 
         String[] resultMsg = message.split("\\$");
 
-        this.clientName = resultMsg[1];
+        this.clientName = resultMsg[1].trim();
 
         try {
-            this.clientSocketAddress = new InetSocketAddress(InetAddress.getLocalHost(), Integer.parseInt(resultMsg[2]));
+            this.clientSocketAddress = new InetSocketAddress(InetAddress.getLocalHost(), Integer.parseInt(resultMsg[2].trim()));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
