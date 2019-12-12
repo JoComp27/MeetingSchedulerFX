@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import requests.RequestType;
+import sun.misc.Request;
 
 import java.net.URL;
 import java.time.Instant;
@@ -126,6 +127,7 @@ public class ClientGUIController implements Initializable {
 
             if(meetingNumber != null){
                 client.sendAdd(meetingNumber);
+                clearInputs(RequestType.Add);
             }
 
         }
@@ -135,6 +137,7 @@ public class ClientGUIController implements Initializable {
 
             if(meetingNumber != null){
                 client.sendWithdraw(meetingNumber);
+                clearInputs(RequestType.Withdraw);
             }
 
         }
@@ -144,6 +147,7 @@ public class ClientGUIController implements Initializable {
 
             if(meetingNumber != null){
                 client.sendRequesterCancel(meetingNumber);
+                clearInputs(RequestType.RequesterCancel);
             }
 
         }
@@ -162,6 +166,7 @@ public class ClientGUIController implements Initializable {
         addRadioButton.setToggleGroup(requestTypesToggleGroup);
         requesterCancel.setToggleGroup(requestTypesToggleGroup);
 
+        //Setting up individual radio buttons
         requestRadioButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 currentlySelectedRequest = RequestType.Request;
@@ -182,7 +187,6 @@ public class ClientGUIController implements Initializable {
                 refreshElements();
             }
         });
-
 
         requesterCancel.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
@@ -222,7 +226,6 @@ public class ClientGUIController implements Initializable {
         client.restoreFromSave(fileName);
     }
 
-
     private void refreshElements() {
 
         //Get Outputs from client
@@ -235,6 +238,29 @@ public class ClientGUIController implements Initializable {
         updateAvailableInputFields();
 
 
+    }
+
+    private void clearInputs(RequestType currentType){
+        if(currentType != null){
+
+            if(currentType.equals(RequestType.Request)){
+
+                Platform.runLater(() -> {
+                    datePicker.getEditor().clear();
+                    timeTextField.clear();
+                    minimumTextField.clear();
+                    participantsTextField.clear();
+                    topicTextField.clear();
+                });
+
+
+            } else {
+                Platform.runLater(() -> {
+                    meetingNumberComboBox.getSelectionModel().clearSelection();
+                });
+            }
+
+        }
     }
 
     private void updateAvailableInputFields() {

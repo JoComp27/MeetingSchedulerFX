@@ -48,6 +48,11 @@ public class ServerGUIController implements Initializable {
 
         server.sendRoomChangeMessage(meetingNumber, newRoomNumber);
 
+        Platform.runLater(() -> {
+            meetingNumberComboBox.getSelectionModel().clearSelection();
+            newRoomTextField.clear();
+        });
+
     }
     
     @Override
@@ -58,10 +63,6 @@ public class ServerGUIController implements Initializable {
                 Platform.runLater(() -> {
                     sendButton.setDisable(false);
                 });
-            } else {
-                Platform.runLater(() -> {
-                    sendButton.setDisable(true);
-                });
             }
         });
 
@@ -69,10 +70,6 @@ public class ServerGUIController implements Initializable {
             if(meetingNumberComboBox.getSelectionModel().getSelectedItem() != null && newRoomTextField.getText() != null){
                 Platform.runLater(() -> {
                     sendButton.setDisable(false);
-                });
-            } else {
-                Platform.runLater(() -> {
-                    sendButton.setDisable(true);
                 });
             }
         });
