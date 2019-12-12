@@ -1088,12 +1088,18 @@ public class Server implements Runnable{
         String meetingNumberRC = Integer.toString(meetingNumber);
 
         ServerMeeting roomChangeMeeting = null;
-
         int newRoomNumberIndex = roomChangeMessage.getNewRoomNumber() - 1;
+        int otherRoomNumber = 0;
 
         if (newRoomNumberIndex != 0 && newRoomNumberIndex != 1) {
             System.out.println("Choose a room number of 1 or 2");
             return;
+        }
+        if(newRoomNumber == 0){
+            otherRoomNumber = 1;
+        }
+        else if(newRoomNumber == 1){
+            otherRoomNumber = 0;
         }
 
         //If meeting number exists
@@ -1104,7 +1110,10 @@ public class Server implements Runnable{
             if (!scheduleMap.get(CalendarUtil.calendarToString(meetingMap.get(meetingNumberRC).getRequestMessage().getCalendar()))[newRoomNumberIndex]) {
                 //Make the meeting's room number to the new one
                 meetingMap.get(meetingNumberRC).setRoomNumber(newRoomNumberIndex);
+                //Set new room to ture (taken)
                 scheduleMap.get(CalendarUtil.calendarToString(meetingMap.get(meetingNumberRC).getRequestMessage().getCalendar()))[newRoomNumberIndex] = true;
+                //Set other room false (not taken)
+                scheduleMap.get(CalendarUtil.calendarToString(meetingMap.get(meetingNumberRC).getRequestMessage().getCalendar()))[otherRoomNumber] = false;
 
                 roomChangeMeeting = meetingMap.get(meetingNumberRC);
 
