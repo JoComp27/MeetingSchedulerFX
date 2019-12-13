@@ -145,16 +145,21 @@ public class ClientMeeting {
         this.requestNumber = Integer.parseInt(subMessages[5]);
         this.meetingNumber = Integer.parseInt(subMessages[6]);
 
-        String[] acceptedMap = subMessages[7].split("@");
+        if(subMessages.length > 7 && !subMessages[7].isEmpty()){
+            String[] acceptedMap = subMessages[7].split("@");
 
-        for(String accMsg : acceptedMap){
+            for(String accMsg : acceptedMap){
 
-            if(accMsg.isEmpty()){
-                continue;
+                if(accMsg.isEmpty()){
+                    continue;
+                }
+
+                String[] entry = accMsg.split("!");
+                this.acceptedMap.put(entry[0], Boolean.parseBoolean(entry[1]));
             }
 
-            String[] entry = accMsg.split("!");
-            this.acceptedMap.put(entry[0], Boolean.parseBoolean(entry[1]));
+        } else {
+            this.acceptedMap = new HashMap<>();
         }
 
     }

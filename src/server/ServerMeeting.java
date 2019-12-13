@@ -115,17 +115,25 @@ public class ServerMeeting {
         this.roomNumber = Integer.parseInt(subMessages[4]);
         this.organizer = subMessages[5];
 
-        String[] acceptedMap = subMessages[6].split("@");
+        if(subMessages.length > 5 && !subMessages[6].isEmpty()){
 
-        for(String accMsg : acceptedMap){
+            String[] acceptedMap = subMessages[6].split("@");
 
-            if(accMsg.isEmpty()){
-                continue;
+            for(String accMsg : acceptedMap){
+
+                if(accMsg.isEmpty()){
+                    continue;
+                }
+
+                String[] entry = accMsg.split("!");
+                this.acceptedMap.put(entry[0], Boolean.parseBoolean(entry[1]));
             }
 
-            String[] entry = accMsg.split("!");
-            this.acceptedMap.put(entry[0], Boolean.parseBoolean(entry[1]));
+        } else {
+            this.acceptedMap = new HashMap<>();
         }
+
+
 
     }
 

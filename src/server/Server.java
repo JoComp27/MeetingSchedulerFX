@@ -132,6 +132,8 @@ public class Server implements Runnable{
 
                     //clientAddressMap.put(requestMessage.getParticipants().get(0), (InetSocketAddress) socketAddress);
 
+                    FileReaderWriter.WriteFile("log", currentTime + "Request " + requestMessage.serialize() + "\n", true);
+                    serverLog.add("Request " + requestMessage.serialize());
 
                     String time = CalendarUtil.calendarToString(requestMessage.getCalendar());
 
@@ -1216,7 +1218,7 @@ public class Server implements Runnable{
 
         }
 
-        if(subMessage.length > 0 && !subMessage[1].isEmpty()){
+        if(subMessage.length > 1 && !subMessage[1].isEmpty()){
             String[] meetingMapString = subMessage[1].split(";");
 
             for(int i = 0 ; i < meetingMapString.length ; i++) {

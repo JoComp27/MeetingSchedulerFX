@@ -138,8 +138,8 @@ public class ServerGUIController implements Initializable {
 
             String msg = "";
 
-            for(String submsg : outputMessages){
-                msg += submsg + "\n";
+            for(int i = outputMessages.size()-1; i >= 0; i--){
+                msg += outputMessages.get(i) + "\n";
             }
 
             outputLogTextarea.setText(msg);
@@ -165,8 +165,6 @@ public class ServerGUIController implements Initializable {
 
                 refreshElements();
             }
-
         }
     }
-    
 }

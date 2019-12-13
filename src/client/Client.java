@@ -520,7 +520,7 @@ public class Client implements Runnable{
         ArrayList<Integer> result = new ArrayList<>();
 
         for(ClientMeeting meeting : meetings){
-            if(!meeting.getUserType() && meeting.getState()){
+            if(!meeting.getUserType() && meeting.getState() && meeting.isCurrentAnswer()){
                 result.add(meeting.getMeetingNumber());
             }
         }
@@ -729,7 +729,7 @@ public class Client implements Runnable{
             }
         }
 
-       if(subMessage.length > 0 && !subMessage[1].isEmpty()) {
+       if(subMessage.length > 1 && !subMessage[1].isEmpty()) {
            String[] availability = subMessage[1].split(";");
 
            for (String available : availability) {
