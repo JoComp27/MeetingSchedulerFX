@@ -79,12 +79,12 @@ public class NotScheduledMessage extends Message {
         stringMessage += calendar.get(Calendar.YEAR) + ":" + calendar.get(Calendar.MONTH) + ":" + calendar.get(Calendar.DAY_OF_MONTH) + ":" + calendar.get(Calendar.HOUR_OF_DAY) + "$";
         stringMessage += minimum + "$";  // MINIMUM
 
-        for(int i = 0; i < participants.size(); i++){ // LIST_OF_PARTICIPANTS
+        for (int i = 0; i < participants.size(); i++) { // LIST_OF_PARTICIPANTS
             stringMessage += participants.get(i) + "%";
         }
 
 
-        stringMessage += "$" +  topic.trim(); // TOPIC
+        stringMessage += "$" + topic.trim(); // TOPIC
 
         return stringMessage;
     }
@@ -96,7 +96,7 @@ public class NotScheduledMessage extends Message {
 
         String[] cal = new String[1];
 
-        for(int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             cal = subMessages[2].split(":");
         }
 
@@ -106,7 +106,7 @@ public class NotScheduledMessage extends Message {
         List<String> participants = new ArrayList<>();
         String[] users = subMessages[4].split("%");
 
-        for(String user : users) {
+        for (String user : users) {
             participants.add(user);
         }
 

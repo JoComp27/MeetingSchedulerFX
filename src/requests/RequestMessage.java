@@ -63,11 +63,10 @@ public class RequestMessage extends Message {
 
         stringMessage += minimum + "$";  // MINIMUM
 
-        for(int i = 0; i < participants.size(); i++){ // LIST_OF_PARTICIPANTS
-            if(i==participants.size()-1){
+        for (int i = 0; i < participants.size(); i++) { // LIST_OF_PARTICIPANTS
+            if (i == participants.size() - 1) {
                 stringMessage += participants.get(i);
-            }
-            else{
+            } else {
                 stringMessage += participants.get(i) + "%";
             }
 
@@ -75,7 +74,7 @@ public class RequestMessage extends Message {
         }
 
 
-        stringMessage += "$" +  topic; // TOPIC
+        stringMessage += "$" + topic; // TOPIC
 
         return stringMessage;
     }
@@ -88,7 +87,7 @@ public class RequestMessage extends Message {
 
         String[] cal = new String[4];
 
-        for(int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             cal = subMessages[2].split(":");
         }
         Calendar c = Calendar.getInstance();
@@ -97,7 +96,7 @@ public class RequestMessage extends Message {
         List<String> participants = new ArrayList<>();
         String[] users = subMessages[4].split("%");
 
-        for(String user : users){
+        for (String user : users) {
             participants.add(user);
         }
         this.requestNumber = Integer.parseInt(subMessages[1]);

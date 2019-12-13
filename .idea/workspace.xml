@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e186d029-4ea3-421e-bf3b-592a8ba389f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUIController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientMeeting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientMeeting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUIController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.txt" beforeDir="false" afterPath="$PROJECT_DIR$/server.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/ClientGUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ClientGUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/ClientMeeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ClientMeeting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerMeeting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerMeeting.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/ServerGUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerGUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/ServerMeeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerMeeting.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,14 +125,22 @@
       <option name="project" value="LOCAL" />
       <updated>1576183820344</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added more fixes to saving feature">
+      <created>1576211033472</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1576211033472</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Made Fixes and merged things with other master" />
     <MESSAGE value="Applied Changes from new master" />
     <MESSAGE value="Added fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added fixes" />
+    <MESSAGE value="Added more fixes to saving feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more fixes to saving feature" />
   </component>
   <component name="WindowStateProjectService">
     <state x="734" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576186811908">
@@ -158,10 +155,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1009" y="483" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576186809468" />
-    <state x="869" y="293" key="CommitChangelistDialog2" timestamp="1576183819624">
+    <state x="869" y="293" key="CommitChangelistDialog2" timestamp="1576211032574">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="869" y="293" key="CommitChangelistDialog2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576183819624" />
+    <state x="869" y="293" key="CommitChangelistDialog2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576211032574" />
     <state x="1060" y="440" key="FileChooserDialogImpl" timestamp="1576184061433">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -198,10 +195,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2517" height="414" key="GridCell.Tab.1.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576106046091" />
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1576183822837">
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1576211036043">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576183822837" />
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576211036043" />
     <state x="976" y="522" key="com.intellij.ide.util.TipDialog" timestamp="1576168141214">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

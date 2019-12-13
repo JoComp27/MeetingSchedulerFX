@@ -21,16 +21,16 @@ public class ClientMeeting {
 
     //Requester Arguments
     private int requestNumber;
-                //Key=port, bool=approved
+    //Key=port, bool=approved
     private HashMap<String, Boolean> acceptedMap;
 
     //Invitee Arguments
     private int meetingNumber;
 
-    public ClientMeeting(){ //Used to restore saves
+    public ClientMeeting() { //Used to restore saves
     }
 
-    public ClientMeeting(InviteMessage inviteMessage){ //Invitee Meeting
+    public ClientMeeting(InviteMessage inviteMessage) { //Invitee Meeting
         this.meetingNumber = inviteMessage.getMeetingNumber();
         this.requestNumber = -1;
         this.calendar = inviteMessage.getCalendar();
@@ -40,7 +40,7 @@ public class ClientMeeting {
 
     }
 
-    public ClientMeeting(RequestMessage requestMessage){ //Requester Meeting
+    public ClientMeeting(RequestMessage requestMessage) { //Requester Meeting
         this.requestNumber = requestMessage.getRequestNumber();
         this.meetingNumber = -1;
         this.calendar = requestMessage.getCalendar();
@@ -50,7 +50,7 @@ public class ClientMeeting {
         this.acceptedMap = new HashMap<>();
     }
 
-    public void receiveConfirmMessage(ConfirmMessage confirmMessage){
+    public void receiveConfirmMessage(ConfirmMessage confirmMessage) {
 
         this.state = true;
         this.roomNumber = confirmMessage.getRoomNumber();
@@ -58,14 +58,14 @@ public class ClientMeeting {
 
     }
 
-    public void receiveScheduledMessage(ScheduledMessage scheduledMessage){
+    public void receiveScheduledMessage(ScheduledMessage scheduledMessage) {
 
         this.state = true;
         this.meetingNumber = scheduledMessage.getMeetingNumber();
         this.roomNumber = scheduledMessage.getRoomNumber();
         this.acceptedMap = new HashMap<>();
 
-        for(String participant : scheduledMessage.getListOfConfirmedParticipants()){
+        for (String participant : scheduledMessage.getListOfConfirmedParticipants()) {
             acceptedMap.put(participant, true);
         }
 
@@ -115,7 +115,7 @@ public class ClientMeeting {
         this.meetingNumber = meetingNumber;
     }
 
-    public String serialize(){
+    public String serialize() {
         String result = "";
 
         result += CalendarUtil.calendarToString(calendar) + ",";
@@ -126,14 +126,14 @@ public class ClientMeeting {
         result += requestNumber + ",";
         result += meetingNumber + ",";
 
-        for(Map.Entry<String, Boolean> entry :  acceptedMap.entrySet()){
+        for (Map.Entry<String, Boolean> entry : acceptedMap.entrySet()) {
             result += entry.getKey() + "!" + entry.getValue() + "@";
         }
 
         return result;
     }
 
-    public void deserialize(String message){
+    public void deserialize(String message) {
 
         String[] subMessages = message.split(",");
 
@@ -145,12 +145,12 @@ public class ClientMeeting {
         this.requestNumber = Integer.parseInt(subMessages[5]);
         this.meetingNumber = Integer.parseInt(subMessages[6]);
 
-        if(subMessages.length > 7 && !subMessages[7].isEmpty()){
+        if (subMessages.length > 7 && !subMessages[7].isEmpty()) {
             String[] acceptedMap = subMessages[7].split("@");
 
-            for(String accMsg : acceptedMap){
+            for (String accMsg : acceptedMap) {
 
-                if(accMsg.isEmpty()){
+                if (accMsg.isEmpty()) {
                     continue;
                 }
 

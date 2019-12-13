@@ -5,7 +5,7 @@ public class ServerWidthdrawMessage extends Message {
     private Integer meetingNumber;
     private String ipAddress;
 
-    public ServerWidthdrawMessage(){
+    public ServerWidthdrawMessage() {
         super(RequestType.ServerWidthdraw);
         this.meetingNumber = null;
         this.ipAddress = null;

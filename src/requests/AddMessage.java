@@ -4,7 +4,7 @@ public class AddMessage extends Message {
 
     private Integer meetingNumber;
 
-    public AddMessage(){
+    public AddMessage() {
         super(RequestType.Add);
         this.meetingNumber = null;
     }

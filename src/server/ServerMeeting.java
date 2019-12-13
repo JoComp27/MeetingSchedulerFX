@@ -18,10 +18,10 @@ public class ServerMeeting {
     private HashMap<String, Boolean> acceptedMap;
     private int roomNumber;
     private String organizer;
-    private  int answeredNumber;
+    private int answeredNumber;
 
 
-    public ServerMeeting(String message){ //Constructor used to deserialize elements
+    public ServerMeeting(String message) { //Constructor used to deserialize elements
         deserialize(message);
     }
 
@@ -52,7 +52,7 @@ public class ServerMeeting {
         return acceptedParticipants;
     }
 
-    public void incrementAcceptedParticipants(){
+    public void incrementAcceptedParticipants() {
         acceptedParticipants++;
     }
 
@@ -68,24 +68,25 @@ public class ServerMeeting {
         return organizer;
     }
 
-    public int getAnsweredNumber(){
+    public int getAnsweredNumber() {
         return answeredNumber;
     }
 
-    public void setAcceptedMap(){
-        for(int i = 0; i<this.requestMessage.getParticipants().size(); i++) {
+    public void setAcceptedMap() {
+        for (int i = 0; i < this.requestMessage.getParticipants().size(); i++) {
             this.acceptedMap.put(this.requestMessage.getParticipants().get(i), false);
         }
     }
-    public void setRoomNumber(int roomNumber){
+
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
 
-    public void incrementAnsweredNumber(){
+    public void incrementAnsweredNumber() {
         answeredNumber++;
     }
 
-    public String serialize(){
+    public String serialize() {
         String result = "";
 
         result += this.id + ",";
@@ -94,14 +95,14 @@ public class ServerMeeting {
         result += this.roomNumber + ",";
         result += this.organizer + ",";
 
-        for(Map.Entry<String, Boolean> entry :  acceptedMap.entrySet()){
+        for (Map.Entry<String, Boolean> entry : acceptedMap.entrySet()) {
             result += entry.getKey() + "!" + entry.getValue() + "@";
         }
 
         return result;
     }
 
-    public void deserialize(String message){
+    public void deserialize(String message) {
 
         String[] subMessages = message.split(",");
 
@@ -115,13 +116,13 @@ public class ServerMeeting {
         this.roomNumber = Integer.parseInt(subMessages[4]);
         this.organizer = subMessages[5];
 
-        if(subMessages.length > 5 && !subMessages[6].isEmpty()){
+        if (subMessages.length > 5 && !subMessages[6].isEmpty()) {
 
             String[] acceptedMap = subMessages[6].split("@");
 
-            for(String accMsg : acceptedMap){
+            for (String accMsg : acceptedMap) {
 
-                if(accMsg.isEmpty()){
+                if (accMsg.isEmpty()) {
                     continue;
                 }
 
@@ -132,7 +133,6 @@ public class ServerMeeting {
         } else {
             this.acceptedMap = new HashMap<>();
         }
-
 
 
     }

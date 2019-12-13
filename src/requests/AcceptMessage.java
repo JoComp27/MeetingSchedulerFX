@@ -4,9 +4,9 @@ public class AcceptMessage extends Message {
 
     private Integer meetingNumber;
 
-    public AcceptMessage(){
-       super(RequestType.Accept);
-       this.meetingNumber = null;
+    public AcceptMessage() {
+        super(RequestType.Accept);
+        this.meetingNumber = null;
     }
 
     public AcceptMessage(Integer meetingNumber) {
@@ -14,7 +14,7 @@ public class AcceptMessage extends Message {
         this.meetingNumber = meetingNumber;
     }
 
-    public Integer getMeetingNumber(){
+    public Integer getMeetingNumber() {
         return this.meetingNumber;
     }
 

@@ -15,18 +15,17 @@ import java.io.File;
 import java.util.Scanner;
 
 /**
- *
  * @author GamingPC
  */
 public class ClientGUI extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
-        
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClientGUI.fxml"));
-        
-        Parent root = (Parent)fxmlLoader.load();
-        
+
+        Parent root = (Parent) fxmlLoader.load();
+
         ClientGUIController controller = fxmlLoader.<ClientGUIController>getController();
 
         String clientName = getParameters().getRaw().get(0);
@@ -38,7 +37,7 @@ public class ClientGUI extends Application {
         //Checking if previous
         File saveFile = new File(fileName + ".txt");
 
-        if(saveFile.exists()){
+        if (saveFile.exists()) {
 
             //Add CLI to check if user wants to restore user or not.
 
@@ -49,7 +48,7 @@ public class ClientGUI extends Application {
 
             Scanner scanner = new Scanner(System.in);
 
-            while(!answer.equals("y") && !answer.equals("n")){
+            while (!answer.equals("y") && !answer.equals("n")) {
 
                 answer = scanner.nextLine().trim();
 
@@ -71,7 +70,7 @@ public class ClientGUI extends Application {
         }
 
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }
@@ -82,7 +81,6 @@ public class ClientGUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
-    
-    
+
+
 }

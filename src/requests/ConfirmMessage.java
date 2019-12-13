@@ -5,7 +5,7 @@ public class ConfirmMessage extends Message {
     private Integer meetingNumber;
     private Integer roomNumber;
 
-    public ConfirmMessage(){
+    public ConfirmMessage() {
         super(RequestType.Confirm);
         this.meetingNumber = null;
         this.roomNumber = null;
@@ -17,11 +17,11 @@ public class ConfirmMessage extends Message {
         this.roomNumber = roomNumber;
     }
 
-    public Integer getMeetingNumber(){
-        return  meetingNumber;
+    public Integer getMeetingNumber() {
+        return meetingNumber;
     }
 
-    public Integer getRoomNumber(){
+    public Integer getRoomNumber() {
         return roomNumber;
     }
 

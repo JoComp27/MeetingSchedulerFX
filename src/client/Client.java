@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Client implements Runnable{
+public class Client implements Runnable {
 
     private static final AtomicInteger countID = new AtomicInteger(0);  //Thread safe auto increment for RequestNumber
 
@@ -41,7 +41,7 @@ public class Client implements Runnable{
         } catch (SocketException e) {
             e.printStackTrace();
         }
-        
+
         try {
             this.serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), serverPort);
         } catch (UnknownHostException ex) {
@@ -64,7 +64,6 @@ public class Client implements Runnable{
 //        System.out.println("MESSAGE SENT");
 
 
-
     }
 
     @Override
@@ -84,16 +83,16 @@ public class Client implements Runnable{
 
     }
 
-    private void checkState(){
+    private void checkState() {
         //If meeting list is not empty
-        if(!meetings.isEmpty()){
+        if (!meetings.isEmpty()) {
             //Get how many meetings this client is part of
             int meetingNumbers = meetings.size();
             System.out.println("You are a part of " + meetingNumbers + ", which meeting do you want to choose?");
             System.out.println("Type 'None' to not select any of the current meetings");
             Scanner scanner = new Scanner(System.in);
             String answer = scanner.nextLine();
-            if(!answer.equals("None")) {
+            if (!answer.equals("None")) {
                 try {
                     if (Integer.parseInt(answer) <= meetingNumbers) {
                         //Use the meeting the user chose
@@ -106,15 +105,13 @@ public class Client implements Runnable{
                             System.out.println("Meeting number: " + clientMeeting.getMeetingNumber());
                             System.out.println("Type 'Cancel_MeetingNumber' to cancel the meeting");
 
-                        }
-                        else if (!clientMeeting.getUserType() && clientMeeting.getState() && clientMeeting.isCurrentAnswer()) {
+                        } else if (!clientMeeting.getUserType() && clientMeeting.getState() && clientMeeting.isCurrentAnswer()) {
                             //Invitee, meeting is confirmed and current answer is accepted
                             //At confirm message, meeting is confirmed, can only withdraw
                             System.out.println("This meeting is confirmed");
                             System.out.println("Meeting number: " + clientMeeting.getMeetingNumber());
                             System.out.println("Type 'Withdraw_MeetingNumber' to withdraw from the meeting");
-                        }
-                        else if (!clientMeeting.getUserType() && clientMeeting.getState() && !clientMeeting.isCurrentAnswer()){
+                        } else if (!clientMeeting.getUserType() && clientMeeting.getState() && !clientMeeting.isCurrentAnswer()) {
                             //Invitee, meeting is confirmed and current answer is not accepted
                             //At add stage
                             System.out.println("This meeting is confirmed");
@@ -128,31 +125,30 @@ public class Client implements Runnable{
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
-            }
-            else{
+            } else {
                 System.out.println("Type in your new request");
             }
         }
     }
 
-    public void sendRequest(Calendar calendar, int minimum, List<String> participants, String topic){
+    public void sendRequest(Calendar calendar, int minimum, List<String> participants, String topic) {
 
-        if(!availability.containsKey(CalendarUtil.calendarToString(calendar))){
+        if (!availability.containsKey(CalendarUtil.calendarToString(calendar))) {
 
-        //Create a RequestMessage
-        RequestMessage requestMessage = new RequestMessage(countID.incrementAndGet(), calendar, minimum, participants, topic);
+            //Create a RequestMessage
+            RequestMessage requestMessage = new RequestMessage(countID.incrementAndGet(), calendar, minimum, participants, topic);
 
-        //Add the sent request to my list
-        synchronized (meetings){
-            meetings.add(new ClientMeeting(requestMessage));
-        }
+            //Add the sent request to my list
+            synchronized (meetings) {
+                meetings.add(new ClientMeeting(requestMessage));
+            }
 
-        synchronized (availability){
-            availability.put(CalendarUtil.calendarToString(calendar), true);
-        }
+            synchronized (availability) {
+                availability.put(CalendarUtil.calendarToString(calendar), true);
+            }
 
-        //Send the RequestMessage to the server
-        UdpSend.sendMessage(requestMessage.serialize(), ds, serverAddress);
+            //Send the RequestMessage to the server
+            UdpSend.sendMessage(requestMessage.serialize(), ds, serverAddress);
 
             Calendar cal = Calendar.getInstance();
             String currentTime = "Client[" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR) + " "
@@ -164,11 +160,11 @@ public class Client implements Runnable{
 
     }
 
-    public void sendAccept(int meetingNumber){
+    public void sendAccept(int meetingNumber) {
 
-        for(int i = 0 ; i < meetings.size(); i++){
-            if(meetings.get(i).getMeetingNumber() == meetingNumber && !meetings.get(i).getState()){
-                synchronized (meetings){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getMeetingNumber() == meetingNumber && !meetings.get(i).getState()) {
+                synchronized (meetings) {
                     meetings.get(i).setCurrentAnswer(true);
                 }
 
@@ -186,11 +182,11 @@ public class Client implements Runnable{
 
     }
 
-    public void sendReject(int meetingNumber){
+    public void sendReject(int meetingNumber) {
 
-        for(int i = 0 ; i < meetings.size(); i++){
-            if(meetings.get(i).getMeetingNumber() == meetingNumber && !meetings.get(i).getState()){
-                synchronized (meetings){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getMeetingNumber() == meetingNumber && !meetings.get(i).getState()) {
+                synchronized (meetings) {
                     meetings.get(i).setCurrentAnswer(false);
                 }
 
@@ -207,13 +203,13 @@ public class Client implements Runnable{
 
     }
 
-    public void sendWithdraw(int meetingNumber){
+    public void sendWithdraw(int meetingNumber) {
 
-        for(int i = 0 ; i < meetings.size(); i++){
-            if(meetings.get(i).getMeetingNumber() == meetingNumber && meetings.get(i).getState()
-                    && !meetings.get(i).getUserType()){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getMeetingNumber() == meetingNumber && meetings.get(i).getState()
+                    && !meetings.get(i).getUserType()) {
 
-                synchronized (meetings){
+                synchronized (meetings) {
                     meetings.get(i).setCurrentAnswer(false);
                 }
 
@@ -231,12 +227,12 @@ public class Client implements Runnable{
 
     }
 
-    public void sendAdd(int meetingNumber){
+    public void sendAdd(int meetingNumber) {
 
-        for(int i = 0; i < meetings.size(); i++){
+        for (int i = 0; i < meetings.size(); i++) {
 
-            if(meetingNumber == meetings.get(i).getMeetingNumber()){
-                if(!meetings.get(i).getUserType()) {
+            if (meetingNumber == meetings.get(i).getMeetingNumber()) {
+                if (!meetings.get(i).getUserType()) {
                     meetings.get(i).setCurrentAnswer(true);
 
                     System.out.println("Sending");
@@ -257,11 +253,11 @@ public class Client implements Runnable{
 
     }
 
-    public void sendRequesterCancel(int meetingNumber){
+    public void sendRequesterCancel(int meetingNumber) {
 
-        for(int i = 0; i < meetings.size(); i++){
-            if(meetings.get(i).getMeetingNumber() == meetingNumber){
-                if(meetings.get(i).getUserType() && meetings.get(i).getState()){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getMeetingNumber() == meetingNumber) {
+                if (meetings.get(i).getUserType() && meetings.get(i).getState()) {
 
                     RequesterCancelMessage requesterCancelMessage = new RequesterCancelMessage(meetingNumber);
                     UdpSend.sendMessage(requesterCancelMessage.serialize(), ds, serverAddress);
@@ -280,7 +276,7 @@ public class Client implements Runnable{
 
     }
 
-    private void sendRegistrationMessage(){
+    private void sendRegistrationMessage() {
 
         RegisterMessage registerMessage = null;
 
@@ -303,8 +299,8 @@ public class Client implements Runnable{
     private void handleDenied(DeniedMessage message) {  //Room Unavailable Message
 
         //Check if request RQ# exists inside its list of request and is the owner
-        for(int i = 0; i < meetings.size(); i++){
-            if(meetings.get(i).getRequestNumber() == message.getRequestNumber()){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getRequestNumber() == message.getRequestNumber()) {
                 //If true, Delete the request that was just sent to the server
                 synchronized (meetings) {
                     meetings.remove(i);
@@ -329,32 +325,32 @@ public class Client implements Runnable{
         //Add the new request into your list and make it a standby status meeting
         ClientMeeting newMeeting = new ClientMeeting(message);
 
-        if(!message.getRequester().equals(clientName)) {
+        if (!message.getRequester().equals(clientName)) {
 
-        if(!availability.containsKey(CalendarUtil.calendarToString(newMeeting.getCalendar()))){
-            newMeeting.setCurrentAnswer(true);
-            synchronized (meetings) {
+            if (!availability.containsKey(CalendarUtil.calendarToString(newMeeting.getCalendar()))) {
+                newMeeting.setCurrentAnswer(true);
+                synchronized (meetings) {
 
                     meetings.add(newMeeting);
+                }
+
+                //Send Accept
+                sendAccept(newMeeting.getMeetingNumber());
+
+            } else {
+                newMeeting.setCurrentAnswer(false);
+                synchronized (meetings) {
+                    meetings.add(newMeeting);
+                }
+
+                //Send Reject
+                sendReject(newMeeting.getMeetingNumber());
             }
 
-            //Send Accept
-            sendAccept(newMeeting.getMeetingNumber());
-
-        } else {
-            newMeeting.setCurrentAnswer(false);
-            synchronized (meetings) {
-                meetings.add(newMeeting);
-            }
-
-            //Send Reject
-            sendReject(newMeeting.getMeetingNumber());
-        }
-
         } else {
 
-            for(int i = 0 ; i < meetings.size(); i++){
-                if(meetings.get(i).getCalendar().equals(message.getCalendar())){
+            for (int i = 0; i < meetings.size(); i++) {
+                if (meetings.get(i).getCalendar().equals(message.getCalendar())) {
                     meetings.get(i).setMeetingNumber(message.getMeetingNumber());
                 }
             }
@@ -374,9 +370,9 @@ public class Client implements Runnable{
 
     private void handleConfirm(ConfirmMessage message) {
 
-        for(int i = 0; i < meetings.size(); i++){
-            if(meetings.get(i).getMeetingNumber() == message.getMeetingNumber()){
-                if(!meetings.get(i).getState() && !meetings.get(i).getUserType()){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getMeetingNumber() == message.getMeetingNumber()) {
+                if (!meetings.get(i).getState() && !meetings.get(i).getUserType()) {
                     synchronized (meetings) {
                         meetings.get(i).receiveConfirmMessage(message);
                         Calendar calendar = Calendar.getInstance();
@@ -394,11 +390,11 @@ public class Client implements Runnable{
 
     private void handleServerCancel(ServerCancelMessage message) {
 
-        for(int i = 0; i < meetings.size(); i++){
-            if(meetings.get(i).getMeetingNumber() == message.getMeetingNumber()){
-                if(!meetings.get(i).getState() && !meetings.get(i).getUserType()) {
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getMeetingNumber() == message.getMeetingNumber()) {
+                if (!meetings.get(i).getState() && !meetings.get(i).getUserType()) {
                     System.out.println("Meeting " + message.getMeetingNumber() + " was cancelled for this reason : " + message.getReason());
-                    synchronized (meetings){
+                    synchronized (meetings) {
                         meetings.remove(i);
 
                         Calendar calendar = Calendar.getInstance();
@@ -416,9 +412,9 @@ public class Client implements Runnable{
     private void handleScheduled(ScheduledMessage message) {
 
         //Check if request RQ# is part of my list and is in standby (Only Host should receive)
-        for(int i = 0; i < meetings.size(); i++){
-            if(meetings.get(i).getRequestNumber() == message.getRequestNumber()){
-                if(!meetings.get(i).getState() && meetings.get(i).getUserType()){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getRequestNumber() == message.getRequestNumber()) {
+                if (!meetings.get(i).getState() && meetings.get(i).getUserType()) {
                     //Change Meeting to complete and change info in meeting
                     meetings.get(i).receiveScheduledMessage(message);
 
@@ -437,10 +433,10 @@ public class Client implements Runnable{
 
     private void handleNotScheduled(NotScheduledMessage message) {
 
-        for(int i = 0; i < meetings.size(); i++){
-            if(meetings.get(i).getRequestNumber() == message.getRequestNumber()){
-                if(!meetings.get(i).getState() && meetings.get(i).getUserType()) {
-                    synchronized (meetings){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getRequestNumber() == message.getRequestNumber()) {
+                if (!meetings.get(i).getState() && meetings.get(i).getUserType()) {
+                    synchronized (meetings) {
                         meetings.remove(i);
                         Calendar calendar = Calendar.getInstance();
                         String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
@@ -456,10 +452,10 @@ public class Client implements Runnable{
 
     private void handleAdded(AddedMessage message) {
 
-        for(int i = 0; i < meetings.size(); i++){
-            if(meetings.get(i).getMeetingNumber() == message.getMeetingNumber()){
-                if(meetings.get(i).getState() && meetings.get(i).getUserType()){
-                    synchronized (meetings){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getMeetingNumber() == message.getMeetingNumber()) {
+                if (meetings.get(i).getState() && meetings.get(i).getUserType()) {
+                    synchronized (meetings) {
                         meetings.get(i).getAcceptedMap().put(message.getSocketAddress(), true);
 
                         Calendar calendar = Calendar.getInstance();
@@ -475,10 +471,10 @@ public class Client implements Runnable{
     }
 
     private void handleRoomChange(RoomChangeMessage message) {
-        for(int i = 0; i < meetings.size(); i++){
-            if(meetings.get(i).getMeetingNumber() == message.getMeetingNumber()){
-                if(meetings.get(i).getState()){
-                    synchronized (meetings){
+        for (int i = 0; i < meetings.size(); i++) {
+            if (meetings.get(i).getMeetingNumber() == message.getMeetingNumber()) {
+                if (meetings.get(i).getState()) {
+                    synchronized (meetings) {
                         meetings.get(i).setRoomNumber(message.getNewRoomNumber());
 
                         Calendar calendar = Calendar.getInstance();
@@ -492,8 +488,8 @@ public class Client implements Runnable{
         }
     }
 
-    private void handleServerWidthdraw(ServerWidthdrawMessage message){
-        for(int i = 0; i < meetings.size(); i++) {
+    private void handleServerWidthdraw(ServerWidthdrawMessage message) {
+        for (int i = 0; i < meetings.size(); i++) {
             if (meetings.get(i).getMeetingNumber() == message.getMeetingNumber()) {
                 if (meetings.get(i).getState() && meetings.get(i).getUserType()) {
                     synchronized (meetings) {
@@ -519,8 +515,8 @@ public class Client implements Runnable{
 
         ArrayList<Integer> result = new ArrayList<>();
 
-        for(ClientMeeting meeting : meetings){
-            if(!meeting.getUserType() && meeting.getState() && meeting.isCurrentAnswer()){
+        for (ClientMeeting meeting : meetings) {
+            if (!meeting.getUserType() && meeting.getState() && meeting.isCurrentAnswer()) {
                 result.add(meeting.getMeetingNumber());
             }
         }
@@ -531,9 +527,9 @@ public class Client implements Runnable{
     public ArrayList<Integer> getAddNumbers() {
         ArrayList<Integer> result = new ArrayList<>();
 
-        for(ClientMeeting meeting : meetings){
-            if(!meeting.getUserType() && meeting.getState() && !meeting.isCurrentAnswer() &&
-                    !availability.containsKey(CalendarUtil.calendarToString(meeting.getCalendar()))){
+        for (ClientMeeting meeting : meetings) {
+            if (!meeting.getUserType() && meeting.getState() && !meeting.isCurrentAnswer() &&
+                    !availability.containsKey(CalendarUtil.calendarToString(meeting.getCalendar()))) {
                 result.add(meeting.getMeetingNumber());
             }
         }
@@ -544,8 +540,8 @@ public class Client implements Runnable{
     public ArrayList<Integer> getRequesterNumbers() {
         ArrayList<Integer> result = new ArrayList<>();
 
-        for(ClientMeeting meeting : meetings){
-            if(meeting.getUserType() && meeting.getState()){
+        for (ClientMeeting meeting : meetings) {
+            if (meeting.getUserType() && meeting.getState()) {
                 result.add(meeting.getMeetingNumber());
             }
         }
@@ -570,25 +566,25 @@ public class Client implements Runnable{
              * the range should be 49152 - 65535.*/
 
             /**The port address is chosen randomly*/
-                byte[] buffer = new byte[100];
-                /**Messages here and sends to client*/
-                while (true) {
-                    DatagramPacket DpReceive = new DatagramPacket(buffer, buffer.length);   //Create Datapacket to receive the data
-                    try {
-                        ds.receive(DpReceive);        //Receive Data in Buffer
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                    String message = new String(DpReceive.getData(), 0, DpReceive.getLength());
-                    System.out.println("Server says: " + message);
-                    /**NEED TO ADD IN TIMEOUT OPTIONS TO RESEND THE MESSAGE. HAVE YET TO
-                     * COMPLETE THIS PORTION OF THE CODE
-                     *
-                     * Add in Thread and feed in the message*/
-                    //This would be the thread managing method
-                    new Thread(new ClientHandle(message)).start();
-
+            byte[] buffer = new byte[100];
+            /**Messages here and sends to client*/
+            while (true) {
+                DatagramPacket DpReceive = new DatagramPacket(buffer, buffer.length);   //Create Datapacket to receive the data
+                try {
+                    ds.receive(DpReceive);        //Receive Data in Buffer
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                 }
+                String message = new String(DpReceive.getData(), 0, DpReceive.getLength());
+                System.out.println("Server says: " + message);
+                /**NEED TO ADD IN TIMEOUT OPTIONS TO RESEND THE MESSAGE. HAVE YET TO
+                 * COMPLETE THIS PORTION OF THE CODE
+                 *
+                 * Add in Thread and feed in the message*/
+                //This would be the thread managing method
+                new Thread(new ClientHandle(message)).start();
+
+            }
 
 
         }
@@ -667,8 +663,8 @@ public class Client implements Runnable{
 
         String result = ""; //meetings ArrayList
 
-        for(int i = 0; i < meetings.size(); i++){
-            if(i == 0) {
+        for (int i = 0; i < meetings.size(); i++) {
+            if (i == 0) {
                 result += meetings.get(i).serialize();
                 continue;
             }
@@ -687,12 +683,12 @@ public class Client implements Runnable{
 
     }
 
-    public class ClientSave implements Runnable{
+    public class ClientSave implements Runnable {
 
         @Override
         public void run() {
 
-            while(true){
+            while (true) {
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
@@ -711,7 +707,7 @@ public class Client implements Runnable{
 
         String message = "";
 
-        for(String msgPortion : messageList){
+        for (String msgPortion : messageList) {
             message += msgPortion;
         }
 
@@ -719,23 +715,23 @@ public class Client implements Runnable{
 
         String[] subMessage = message.split("_");
 
-        if(subMessage.length > 0 && !subMessage[0].isEmpty()){
+        if (subMessage.length > 0 && !subMessage[0].isEmpty()) {
             String[] meetings = subMessage[0].split(";");
 
-            for(String meeting : meetings){
+            for (String meeting : meetings) {
                 ClientMeeting newMeeting = new ClientMeeting();
                 newMeeting.deserialize(meeting);
                 this.meetings.add(newMeeting);
             }
         }
 
-       if(subMessage.length > 1 && !subMessage[1].isEmpty()) {
-           String[] availability = subMessage[1].split(";");
+        if (subMessage.length > 1 && !subMessage[1].isEmpty()) {
+            String[] availability = subMessage[1].split(";");
 
-           for (String available : availability) {
-               this.availability.put(available, true);
-           }
-       }
+            for (String available : availability) {
+                this.availability.put(available, true);
+            }
+        }
 
     }
 

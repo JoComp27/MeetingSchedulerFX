@@ -21,7 +21,6 @@ import java.time.chrono.Chronology;
 import java.util.*;
 
 /**
- *
  * @author GamingPC
  */
 public class ClientGUIController implements Initializable {
@@ -69,7 +68,7 @@ public class ClientGUIController implements Initializable {
     @FXML
     private void handleSendButtonAction(ActionEvent event) {
 
-        if(currentlySelectedRequest.equals(RequestType.Request)){
+        if (currentlySelectedRequest.equals(RequestType.Request)) {
 
             LocalDate date = datePicker.getValue();
             String time = timeTextField.getText();
@@ -77,7 +76,7 @@ public class ClientGUIController implements Initializable {
             String participants = participantsTextField.getText();
             String topic = topicTextField.getText();
 
-            if(date == null || time == null || minimum == null || participants == null){
+            if (date == null || time == null || minimum == null || participants == null) {
                 System.out.println("One or more field is empty");
                 return;
             }
@@ -85,10 +84,10 @@ public class ClientGUIController implements Initializable {
             int timeInt = 0;
             int min = 0;
 
-            try{
+            try {
                 timeInt = Integer.parseInt(time);
                 min = Integer.parseInt(minimum);
-            } catch(NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("INVALID TIME OR MINIMUM VALUES");
                 return;
             }
@@ -96,17 +95,17 @@ public class ClientGUIController implements Initializable {
             List<String> participantsList = new ArrayList<>();
             String[] participantsArray = participants.split(",");
 
-            if(min > participantsArray.length){
+            if (min > participantsArray.length) {
                 System.out.println("MIN IS LARGER THAN THE NUMBER OF INVITEES");
                 return;
             }
 
-            for(String element : participantsArray){
+            for (String element : participantsArray) {
                 participantsList.add(element.trim());
             }
 
             int year = date.getYear();
-            int month = date.getMonthValue()-1;
+            int month = date.getMonthValue() - 1;
             int day = date.getDayOfMonth();
             int hour = timeInt;
 
@@ -116,36 +115,30 @@ public class ClientGUIController implements Initializable {
             calendar.set(year, month, day, timeInt, 0, 0);
 
 
-
             client.sendRequest(calendar, min, participantsList, topic);
-        }
-
-
-        else if(currentlySelectedRequest.equals(RequestType.Add)){
+        } else if (currentlySelectedRequest.equals(RequestType.Add)) {
 
             Integer meetingNumber = meetingNumberComboBox.getSelectionModel().getSelectedItem();
 
-            if(meetingNumber != null){
+            if (meetingNumber != null) {
                 client.sendAdd(meetingNumber);
                 clearInputs(RequestType.Add);
             }
 
-        }
-        else if(currentlySelectedRequest.equals(RequestType.Withdraw)){
+        } else if (currentlySelectedRequest.equals(RequestType.Withdraw)) {
 
             Integer meetingNumber = meetingNumberComboBox.getSelectionModel().getSelectedItem();
 
-            if(meetingNumber != null){
+            if (meetingNumber != null) {
                 client.sendWithdraw(meetingNumber);
                 clearInputs(RequestType.Withdraw);
             }
 
-        }
-        else if(currentlySelectedRequest.equals(RequestType.RequesterCancel)){
+        } else if (currentlySelectedRequest.equals(RequestType.RequesterCancel)) {
 
             Integer meetingNumber = meetingNumberComboBox.getSelectionModel().getSelectedItem();
 
-            if(meetingNumber != null){
+            if (meetingNumber != null) {
                 client.sendRequesterCancel(meetingNumber);
                 clearInputs(RequestType.RequesterCancel);
             }
@@ -222,7 +215,7 @@ public class ClientGUIController implements Initializable {
 
     }
 
-    public void restoreFromSave(String fileName){
+    public void restoreFromSave(String fileName) {
         client.restoreFromSave(fileName);
     }
 
@@ -240,10 +233,10 @@ public class ClientGUIController implements Initializable {
 
     }
 
-    private void clearInputs(RequestType currentType){
-        if(currentType != null){
+    private void clearInputs(RequestType currentType) {
+        if (currentType != null) {
 
-            if(currentType.equals(RequestType.Request)){
+            if (currentType.equals(RequestType.Request)) {
 
                 Platform.runLater(() -> {
                     datePicker.getEditor().clear();
@@ -267,7 +260,7 @@ public class ClientGUIController implements Initializable {
 
         Platform.runLater(() -> {
 
-            if(currentlySelectedRequest == null){
+            if (currentlySelectedRequest == null) {
 
                 meetingNumberComboBox.setDisable(true);
                 datePicker.setDisable(true);
@@ -282,7 +275,7 @@ public class ClientGUIController implements Initializable {
 
             boolean isRequest = false;
 
-            if(currentlySelectedRequest.equals(RequestType.Request)){
+            if (currentlySelectedRequest.equals(RequestType.Request)) {
                 isRequest = true;
             }
 
@@ -298,13 +291,13 @@ public class ClientGUIController implements Initializable {
 
     }
 
-    private void updateOutputTextArea(List<String> outputMessages){
+    private void updateOutputTextArea(List<String> outputMessages) {
 
         Platform.runLater(() -> {
 
             String msg = "";
 
-            for(int i = outputMessages.size()-1; i >= 0; i--){
+            for (int i = outputMessages.size() - 1; i >= 0; i--) {
                 msg += outputMessages.get(i) + "\n";
             }
 
@@ -313,26 +306,24 @@ public class ClientGUIController implements Initializable {
 
     }
 
-    private void updateMeetingNumberComboBox(){
+    private void updateMeetingNumberComboBox() {
 
-        if(currentlySelectedRequest == null){
+        if (currentlySelectedRequest == null) {
             return;
         }
 
         ArrayList<Integer> meetingNumbers;
 
-        if(currentlySelectedRequest.equals(RequestType.Withdraw)) {
+        if (currentlySelectedRequest.equals(RequestType.Withdraw)) {
             //Fill in meeting numbers that are complete and that the client has said yes to
             meetingNumbers = client.getWidthdrawNumbers();
 
-        }
-        else if(currentlySelectedRequest.equals(RequestType.Add)) {
+        } else if (currentlySelectedRequest.equals(RequestType.Add)) {
             //Fill in meeting numbers that the client has said no to and that the date would be available now.
 
             meetingNumbers = client.getAddNumbers();
 
-        }
-        else if(currentlySelectedRequest.equals(RequestType.RequesterCancel)) {
+        } else if (currentlySelectedRequest.equals(RequestType.RequesterCancel)) {
             //Fill in meeting numbers that client is a requester of
 
             meetingNumbers = client.getRequesterNumbers();
@@ -341,16 +332,16 @@ public class ClientGUIController implements Initializable {
             return;
         }
 
-        if(meetingNumberComboBox.getItems().isEmpty()){
+        if (meetingNumberComboBox.getItems().isEmpty()) {
             meetingNumberComboBox.getItems().setAll(meetingNumbers);
         } else {
 
-            if(meetingNumberComboBox.getItems().equals(meetingNumbers)){
+            if (meetingNumberComboBox.getItems().equals(meetingNumbers)) {
                 return;
             }
 
             Integer selectedItem = meetingNumberComboBox.getSelectionModel().getSelectedItem();
-            if(selectedItem != null && meetingNumbers.contains(selectedItem)){
+            if (selectedItem != null && meetingNumbers.contains(selectedItem)) {
 
                 Platform.runLater(() -> {
                     meetingNumberComboBox.getItems().setAll(meetingNumbers);
@@ -369,12 +360,12 @@ public class ClientGUIController implements Initializable {
 
     }
 
-    private class AutoRefresh implements Runnable{
+    private class AutoRefresh implements Runnable {
 
         @Override
         public void run() {
 
-            while(true){
+            while (true) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

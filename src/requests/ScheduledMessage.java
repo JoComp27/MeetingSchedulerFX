@@ -1,13 +1,13 @@
 package requests;
 
-public class ScheduledMessage extends Message{
+public class ScheduledMessage extends Message {
 
     Integer requestNumber;
     Integer meetingNumber;
     Integer roomNumber;
     String[] listOfConfirmedParticipants;
 
-    public ScheduledMessage(){
+    public ScheduledMessage() {
         super(RequestType.Scheduled);
         this.requestNumber = null;
         this.meetingNumber = null;
@@ -63,7 +63,7 @@ public class ScheduledMessage extends Message{
         answer += requestNumber + "$";
         answer += roomNumber + "$";
 
-        for(int i = 0; i < listOfConfirmedParticipants.length ; i++) {
+        for (int i = 0; i < listOfConfirmedParticipants.length; i++) {
             if (i == listOfConfirmedParticipants.length - 1) {
                 answer += listOfConfirmedParticipants[i];
                 break;

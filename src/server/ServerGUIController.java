@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- *
  * @author GamingPC
  */
 public class ServerGUIController implements Initializable {
@@ -38,8 +37,8 @@ public class ServerGUIController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
 
-        if(meetingNumberComboBox.getSelectionModel().getSelectedItem() == null ||
-            newRoomTextField.getText() == null){
+        if (meetingNumberComboBox.getSelectionModel().getSelectedItem() == null ||
+                newRoomTextField.getText() == null) {
             return;
         }
 
@@ -54,12 +53,12 @@ public class ServerGUIController implements Initializable {
         });
 
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         meetingNumberComboBox.onMouseClickedProperty().addListener((observable, oldValue, newValue) -> {
-            if(meetingNumberComboBox.getSelectionModel().getSelectedItem() != null && newRoomTextField.getText() != null){
+            if (meetingNumberComboBox.getSelectionModel().getSelectedItem() != null && newRoomTextField.getText() != null) {
                 Platform.runLater(() -> {
                     sendButton.setDisable(false);
                 });
@@ -67,7 +66,7 @@ public class ServerGUIController implements Initializable {
         });
 
         newRoomTextField.onInputMethodTextChangedProperty().addListener((observable, oldValue, newValue) -> {
-            if(meetingNumberComboBox.getSelectionModel().getSelectedItem() != null && newRoomTextField.getText() != null){
+            if (meetingNumberComboBox.getSelectionModel().getSelectedItem() != null && newRoomTextField.getText() != null) {
                 Platform.runLater(() -> {
                     sendButton.setDisable(false);
                 });
@@ -80,7 +79,7 @@ public class ServerGUIController implements Initializable {
 
     }
 
-    public void initializeServer(){
+    public void initializeServer() {
         this.server = new Server();
         Thread thread = new Thread(server);
         thread.start();
@@ -100,20 +99,20 @@ public class ServerGUIController implements Initializable {
 
     }
 
-    private void updateMeetingNumberComboBox(){
+    private void updateMeetingNumberComboBox() {
 
         List<Integer> meetingNumbers = server.getMeetingNumbers();
 
-        if(meetingNumberComboBox.getItems().isEmpty()){
+        if (meetingNumberComboBox.getItems().isEmpty()) {
             meetingNumberComboBox.getItems().setAll(meetingNumbers);
         } else {
 
-            if(meetingNumberComboBox.getItems().equals(meetingNumbers)){
+            if (meetingNumberComboBox.getItems().equals(meetingNumbers)) {
                 return;
             }
 
             Integer selectedItem = meetingNumberComboBox.getSelectionModel().getSelectedItem();
-            if(selectedItem != null && meetingNumbers.contains(selectedItem)){
+            if (selectedItem != null && meetingNumbers.contains(selectedItem)) {
 
                 Platform.runLater(() -> {
                     meetingNumberComboBox.getItems().setAll(meetingNumbers);
@@ -132,13 +131,13 @@ public class ServerGUIController implements Initializable {
 
     }
 
-    private void updateOutputTextArea(List<String> outputMessages){
+    private void updateOutputTextArea(List<String> outputMessages) {
 
         Platform.runLater(() -> {
 
             String msg = "";
 
-            for(int i = outputMessages.size()-1; i >= 0; i--){
+            for (int i = outputMessages.size() - 1; i >= 0; i--) {
                 msg += outputMessages.get(i) + "\n";
             }
 
@@ -151,12 +150,12 @@ public class ServerGUIController implements Initializable {
         server.loadServer();
     }
 
-    private class AutoRefresh implements Runnable{
+    private class AutoRefresh implements Runnable {
 
         @Override
         public void run() {
 
-            while(true){
+            while (true) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

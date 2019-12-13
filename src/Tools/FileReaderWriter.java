@@ -7,7 +7,7 @@ public class FileReaderWriter {
 
     private static final String FILE_EXTENSION = ".txt";
 
-    public static void WriteFile(String fileName, String message, boolean append){
+    public static void WriteFile(String fileName, String message, boolean append) {
         File newFile = new File(fileName + FILE_EXTENSION);
 
         FileWriter fileWriter = null;
@@ -51,7 +51,7 @@ public class FileReaderWriter {
             e.printStackTrace();
         }
 
-        while(line != null) {
+        while (line != null) {
             result.add(line);
             try {
                 line = bufferedReader.readLine();

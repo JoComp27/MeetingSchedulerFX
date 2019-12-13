@@ -5,7 +5,7 @@ public class AddedMessage extends Message {
     private Integer meetingNumber;
     private String socketAddress;
 
-    public AddedMessage(){
+    public AddedMessage() {
         super(RequestType.Added);
         this.meetingNumber = null;
         this.socketAddress = null;

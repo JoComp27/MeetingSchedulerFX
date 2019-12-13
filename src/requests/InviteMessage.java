@@ -76,7 +76,7 @@ public class InviteMessage extends Message {
     public void deserialize(String message) {
 
         String[] arrMsg = message.split("\\$");
-        Calendar c = CalendarUtil.stringToCalendar( arrMsg[2]);
+        Calendar c = CalendarUtil.stringToCalendar(arrMsg[2]);
 
         this.meetingNumber = Integer.parseInt(arrMsg[1]);
         this.calendar = c;
