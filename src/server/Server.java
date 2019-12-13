@@ -19,7 +19,7 @@ public class Server implements Runnable {
     private HashMap<String, InetSocketAddress> clientAddressMap;         //String ClientName, InetSocketAddress client socket address
     private List<String> serverLog;
 
-    private final int millisBetweenSaves = 2000;
+    private final int MILLIS_BETWEEN_SAVES = 2000;
 
     private DatagramSocket serverSocket;
 
@@ -1278,7 +1278,7 @@ public class Server implements Runnable {
             while(true){
 
                 try {
-                    Thread.sleep(millisBetweenSaves);
+                    Thread.sleep(MILLIS_BETWEEN_SAVES);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

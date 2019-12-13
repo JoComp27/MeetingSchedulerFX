@@ -5,7 +5,6 @@ import Tools.FileReaderWriter;
 import Tools.UdpSend;
 import requests.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.*;
 import java.util.*;
@@ -17,8 +16,8 @@ public class Client implements Runnable {
 
     private static final AtomicInteger countID = new AtomicInteger(0);  //Thread safe auto increment for RequestNumber
 
-    private final int serverPort = 9997;
-    private final int millisBetweenSaves = 2000;
+    private final int SERVER_PORT = 9997;
+    private final int MILLIS_BETWEEN_SAVES = 2000;
 
     private String clientName;
 
@@ -29,14 +28,14 @@ public class Client implements Runnable {
     private ArrayList<ClientMeeting> meetings;
     private HashMap<String, Boolean> availability;
 
-    private List<String> ClientLog;
+    private List<String> clientLog;
 
     public Client(String clientName) {
         this.clientName = clientName;
         this.availability = new HashMap<>();
 
         this.meetings = new ArrayList<>();
-        this.ClientLog = new ArrayList<>();
+        this.clientLog = new ArrayList<>();
 
         try {
             ds = new DatagramSocket();
@@ -45,7 +44,7 @@ public class Client implements Runnable {
         }
 
         try {
-            this.serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), serverPort);
+            this.serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), SERVER_PORT);
         } catch (UnknownHostException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -156,7 +155,7 @@ public class Client implements Runnable {
             String currentTime = "Client[" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR) + " "
                     + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND) + "]: ";
             FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Request from '" + clientName + "' " + requestMessage.serialize() + "\n", true);
-            ClientLog.add("Request from '" + clientName + "' " + requestMessage.serialize());
+            clientLog.add("Request from '" + clientName + "' " + requestMessage.serialize());
 
         }
 
@@ -177,7 +176,7 @@ public class Client implements Runnable {
                 String currentTime = "Client[" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR) + " "
                         + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND) + "]: ";
                 FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Accept from '" + clientName + "' " + acceptMessage.serialize() + "\n", true);
-                ClientLog.add("Accept from '" + clientName + "' " + acceptMessage.serialize());
+                clientLog.add("Accept from '" + clientName + "' " + acceptMessage.serialize());
 
             }
         }
@@ -199,7 +198,7 @@ public class Client implements Runnable {
                 String currentTime = "Client[" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR) + " "
                         + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND) + "]: ";
                 FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Reject from '" + clientName + "' " + rejectMessage.serialize() + "\n", true);
-                ClientLog.add("Reject from '" + clientName + "' " + rejectMessage.serialize());
+                clientLog.add("Reject from '" + clientName + "' " + rejectMessage.serialize());
             }
         }
 
@@ -222,7 +221,7 @@ public class Client implements Runnable {
                 String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                         + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                 FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Add from '" + clientName + "' " + withdrawMessage.serialize() + "\n", true);
-                ClientLog.add(currentTime + "Add from '" + clientName + "' " + withdrawMessage.serialize());
+                clientLog.add(currentTime + "Add from '" + clientName + "' " + withdrawMessage.serialize());
 
             }
         }
@@ -246,7 +245,7 @@ public class Client implements Runnable {
                     String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                             + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                     FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Add from '" + clientName + "' " + addMessage.serialize() + "\n", true);
-                    ClientLog.add(currentTime + "Add from '" + clientName + "' " + addMessage.serialize());
+                    clientLog.add(currentTime + "Add from '" + clientName + "' " + addMessage.serialize());
 
                 }
                 return;
@@ -268,7 +267,7 @@ public class Client implements Runnable {
                     String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                             + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                     FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Cancel from '" + clientName + "' " + requesterCancelMessage.serialize() + "\n", true);
-                    ClientLog.add(currentTime + "Cancel from '" + clientName + "' " + requesterCancelMessage.serialize());
+                    clientLog.add(currentTime + "Cancel from '" + clientName + "' " + requesterCancelMessage.serialize());
 
                 }
 
@@ -294,7 +293,7 @@ public class Client implements Runnable {
         String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                 + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
         FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Register from '" + clientName + "' " + registerMessage.serialize() + "\n", true);
-        ClientLog.add(currentTime + "Register from '" + clientName + "' " + registerMessage.serialize());
+        clientLog.add(currentTime + "Register from '" + clientName + "' " + registerMessage.serialize());
 
     }
 
@@ -311,7 +310,7 @@ public class Client implements Runnable {
                     String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                             + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                     FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Denied " + message.serialize() + "\n", true);
-                    ClientLog.add(currentTime + "Denied " + message.serialize());
+                    clientLog.add(currentTime + "Denied " + message.serialize());
                 }
                 return;
             }
@@ -374,7 +373,7 @@ public class Client implements Runnable {
         String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                 + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
         FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Invite for '" + clientName + "'" + message.serialize() + "\n", true);
-        ClientLog.add(currentTime + "Invite for '" + clientName + "'" + message.serialize());
+        clientLog.add(currentTime + "Invite for '" + clientName + "'" + message.serialize());
 
     }
 
@@ -389,7 +388,7 @@ public class Client implements Runnable {
                         String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                                 + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                         FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Confirm from '" + clientName + "' " + message.serialize() + "\n", true);
-                        ClientLog.add(currentTime + "Confirm from '" + clientName + "' " + message.serialize());
+                        clientLog.add(currentTime + "Confirm from '" + clientName + "' " + message.serialize());
                     }
                 }
                 return;
@@ -417,7 +416,7 @@ public class Client implements Runnable {
                     String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                             + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                     FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Cancel for '" + clientName + "'" + message.serialize() + "\n", true);
-                    ClientLog.add(currentTime + "Cancel for '" + clientName + "'" + message.serialize());
+                    clientLog.add(currentTime + "Cancel for '" + clientName + "'" + message.serialize());
                 }
             }
         }
@@ -439,7 +438,7 @@ public class Client implements Runnable {
                     String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                             + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                     FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Scheduled for '" + clientName + "' " + message.serialize() + "\n", true);
-                    ClientLog.add(currentTime + "Scheduled for '" + clientName + "' " + message.serialize());
+                    clientLog.add(currentTime + "Scheduled for '" + clientName + "' " + message.serialize());
                     return;
                 }
                 System.out.println("!meetings.get(i).getState() && meetings.get(i).getUserType() is false");
@@ -461,7 +460,7 @@ public class Client implements Runnable {
                         String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                                 + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                         FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Not scheduled for '" + clientName + "' " + message.serialize() + "\n", true);
-                        ClientLog.add(currentTime + "Not scheduled for '" + clientName + "' " + message.serialize());
+                        clientLog.add(currentTime + "Not scheduled for '" + clientName + "' " + message.serialize());
                     }
                 }
             }
@@ -481,7 +480,7 @@ public class Client implements Runnable {
                         String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                                 + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                         FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Add for '" + clientName + "' " + message.serialize() + "\n", true);
-                        ClientLog.add(currentTime + "Add for '" + clientName + "' " + message.serialize());
+                        clientLog.add(currentTime + "Add for '" + clientName + "' " + message.serialize());
                     }
                 }
             }
@@ -500,7 +499,7 @@ public class Client implements Runnable {
                         String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                                 + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                         FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Room change for '" + clientName + "' " + message.serialize() + "\n", true);
-                        ClientLog.add(currentTime + "Room change for '" + clientName + "' " + message.serialize());
+                        clientLog.add(currentTime + "Room change for '" + clientName + "' " + message.serialize());
                     }
                 }
             }
@@ -520,7 +519,7 @@ public class Client implements Runnable {
                         String currentTime = "Client[" + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " "
                                 + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                         FileReaderWriter.WriteFile("logClient" + clientName, currentTime + "Room change for '" + clientName + "' " + message.serialize() + "\n", true);
-                        ClientLog.add(currentTime + "Room change for '" + clientName + "' " + message.serialize());
+                        clientLog.add(currentTime + "Room change for '" + clientName + "' " + message.serialize());
 
                     }
                 }
@@ -571,7 +570,7 @@ public class Client implements Runnable {
     }
 
     public List<String> getLog() {
-        return ClientLog;
+        return clientLog;
     }
 
     public void setServerAddress(String[] split) {
@@ -717,7 +716,7 @@ public class Client implements Runnable {
 
             while (true) {
                 try {
-                    Thread.sleep(millisBetweenSaves);
+                    Thread.sleep(MILLIS_BETWEEN_SAVES);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

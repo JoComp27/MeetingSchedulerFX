@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e186d029-4ea3-421e-bf3b-592a8ba389f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientHandle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientListen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientListen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientSave.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/requests/RegisterMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/requests/RegisterMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerMeeting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerMeeting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/ServerMeeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerMeeting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576268392265</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixing issues with saving for client and server&#10;- Fixing issue where invited client would not enter the date inside their availability hashmap&#10;- Fixed issue where server availability hashmap would have data put into it without having it be initialized&#10;- Fixed issue where server loading function would not use correct index and access null/incorrect array data">
+      <created>1576270213169</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1576270213169</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -178,7 +178,8 @@
     <MESSAGE value="Added more fixes to saving feature" />
     <MESSAGE value="Added fixes to saving (Handling possible errors), Added saving client address list in server, reformatted entire code" />
     <MESSAGE value="Bunch of dumb fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bunch of dumb fixes" />
+    <MESSAGE value="Fixing issues with saving for client and server&#10;- Fixing issue where invited client would not enter the date inside their availability hashmap&#10;- Fixed issue where server availability hashmap would have data put into it without having it be initialized&#10;- Fixed issue where server loading function would not use correct index and access null/incorrect array data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing issues with saving for client and server&#10;- Fixing issue where invited client would not enter the date inside their availability hashmap&#10;- Fixed issue where server availability hashmap would have data put into it without having it be initialized&#10;- Fixed issue where server loading function would not use correct index and access null/incorrect array data" />
   </component>
   <component name="WindowStateProjectService">
     <state x="277" y="201" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576250219952">
@@ -195,11 +196,11 @@
     </state>
     <state x="1009" y="483" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576186809468" />
     <state x="662" y="359" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1680.974@0.23.1680.974" timestamp="1576243300563" />
-    <state x="97" y="91" key="CommitChangelistDialog2" timestamp="1576268391587">
+    <state x="97" y="91" key="CommitChangelistDialog2" timestamp="1576270212655">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state x="869" y="293" key="CommitChangelistDialog2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576214620332" />
-    <state x="97" y="91" key="CommitChangelistDialog2/0.23.1680.974@0.23.1680.974" timestamp="1576268391587" />
+    <state x="97" y="91" key="CommitChangelistDialog2/0.23.1680.974@0.23.1680.974" timestamp="1576270212655" />
     <state width="473" height="466" key="DebuggerActiveHint" timestamp="1576269376766">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
@@ -208,51 +209,51 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1060" y="440" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576184061433" />
-    <state width="1638" height="324" key="GridCell.Tab.0.bottom" timestamp="1576269299825">
+    <state width="807" height="324" key="GridCell.Tab.0.bottom" timestamp="1576270255145">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="132" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576216568653" />
-    <state width="1638" height="324" key="GridCell.Tab.0.bottom/0.23.1680.974@0.23.1680.974" timestamp="1576269299825" />
-    <state width="1638" height="324" key="GridCell.Tab.0.center" timestamp="1576269299811">
+    <state width="807" height="324" key="GridCell.Tab.0.bottom/0.23.1680.974@0.23.1680.974" timestamp="1576270255145" />
+    <state width="807" height="324" key="GridCell.Tab.0.center" timestamp="1576270255145">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="132" key="GridCell.Tab.0.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576216568652" />
-    <state width="1638" height="324" key="GridCell.Tab.0.center/0.23.1680.974@0.23.1680.974" timestamp="1576269299811" />
-    <state width="1638" height="324" key="GridCell.Tab.0.left" timestamp="1576269299806">
+    <state width="807" height="324" key="GridCell.Tab.0.center/0.23.1680.974@0.23.1680.974" timestamp="1576270255145" />
+    <state width="807" height="324" key="GridCell.Tab.0.left" timestamp="1576270255144">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="132" key="GridCell.Tab.0.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576216568652" />
-    <state width="1638" height="324" key="GridCell.Tab.0.left/0.23.1680.974@0.23.1680.974" timestamp="1576269299806" />
-    <state width="1638" height="324" key="GridCell.Tab.0.right" timestamp="1576269299813">
+    <state width="807" height="324" key="GridCell.Tab.0.left/0.23.1680.974@0.23.1680.974" timestamp="1576270255144" />
+    <state width="807" height="324" key="GridCell.Tab.0.right" timestamp="1576270255145">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="132" key="GridCell.Tab.0.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576216568653" />
-    <state width="1638" height="324" key="GridCell.Tab.0.right/0.23.1680.974@0.23.1680.974" timestamp="1576269299813" />
-    <state width="1638" height="324" key="GridCell.Tab.1.bottom" timestamp="1576269303702">
+    <state width="807" height="324" key="GridCell.Tab.0.right/0.23.1680.974@0.23.1680.974" timestamp="1576270255145" />
+    <state width="807" height="324" key="GridCell.Tab.1.bottom" timestamp="1576270255147">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="414" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576106046091" />
-    <state width="1638" height="324" key="GridCell.Tab.1.bottom/0.23.1680.974@0.23.1680.974" timestamp="1576269303702" />
-    <state width="1638" height="324" key="GridCell.Tab.1.center" timestamp="1576269303701">
+    <state width="807" height="324" key="GridCell.Tab.1.bottom/0.23.1680.974@0.23.1680.974" timestamp="1576270255147" />
+    <state width="807" height="324" key="GridCell.Tab.1.center" timestamp="1576270255146">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="414" key="GridCell.Tab.1.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576106046091" />
-    <state width="1638" height="324" key="GridCell.Tab.1.center/0.23.1680.974@0.23.1680.974" timestamp="1576269303701" />
-    <state width="1638" height="324" key="GridCell.Tab.1.left" timestamp="1576269303700">
+    <state width="807" height="324" key="GridCell.Tab.1.center/0.23.1680.974@0.23.1680.974" timestamp="1576270255146" />
+    <state width="807" height="324" key="GridCell.Tab.1.left" timestamp="1576270255146">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="414" key="GridCell.Tab.1.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576106046091" />
-    <state width="1638" height="324" key="GridCell.Tab.1.left/0.23.1680.974@0.23.1680.974" timestamp="1576269303700" />
-    <state width="1638" height="324" key="GridCell.Tab.1.right" timestamp="1576269303701">
+    <state width="807" height="324" key="GridCell.Tab.1.left/0.23.1680.974@0.23.1680.974" timestamp="1576270255146" />
+    <state width="807" height="324" key="GridCell.Tab.1.right" timestamp="1576270255147">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="414" key="GridCell.Tab.1.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576106046091" />
-    <state width="1638" height="324" key="GridCell.Tab.1.right/0.23.1680.974@0.23.1680.974" timestamp="1576269303701" />
-    <state x="572" y="324" key="Vcs.Push.Dialog.v2" timestamp="1576268396375">
+    <state width="807" height="324" key="GridCell.Tab.1.right/0.23.1680.974@0.23.1680.974" timestamp="1576270255147" />
+    <state x="572" y="324" key="Vcs.Push.Dialog.v2" timestamp="1576270215119">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576214622818" />
-    <state x="572" y="324" key="Vcs.Push.Dialog.v2/0.23.1680.974@0.23.1680.974" timestamp="1576268396375" />
+    <state x="572" y="324" key="Vcs.Push.Dialog.v2/0.23.1680.974@0.23.1680.974" timestamp="1576270215119" />
     <state x="641" y="386" key="com.intellij.ide.util.TipDialog" timestamp="1576263881399">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
