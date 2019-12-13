@@ -57,26 +57,6 @@ public class ServerGUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        meetingNumberComboBox.onMouseClickedProperty().addListener((observable, oldValue, newValue) -> {
-            if (meetingNumberComboBox.getSelectionModel().getSelectedItem() != null && newRoomTextField.getText() != null) {
-                Platform.runLater(() -> {
-                    sendButton.setDisable(false);
-                });
-            }
-        });
-
-        newRoomTextField.onInputMethodTextChangedProperty().addListener((observable, oldValue, newValue) -> {
-            if (meetingNumberComboBox.getSelectionModel().getSelectedItem() != null && newRoomTextField.getText() != null) {
-                Platform.runLater(() -> {
-                    sendButton.setDisable(false);
-                });
-            }
-        });
-
-        Platform.runLater(() -> {
-            sendButton.setDisable(true);
-        });
-
     }
 
     public void initializeServer() {

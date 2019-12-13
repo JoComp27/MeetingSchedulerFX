@@ -3,18 +3,33 @@
   <component name="ChangeListManager">
     <list default="true" id="e186d029-4ea3-421e-bf3b-592a8ba389f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MeetingScheduler.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saveFile_test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientHandle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientListen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientListen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client$ClientSave.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUIController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUIController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUIController$AutoRefresh.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUIController$AutoRefresh.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/client/ClientGUIController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/requests/InviteMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/requests/InviteMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/requests/RequestMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/requests/RequestMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/requests/ScheduledMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/requests/ScheduledMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server$ServerHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server$ServerHandle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server$ServerSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server$ServerSave.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUIController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUIController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUIController$AutoRefresh.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUIController$AutoRefresh.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerGUIController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerMeeting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeetingSchedulerFX/server/ServerMeeting.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.txt" beforeDir="false" afterPath="$PROJECT_DIR$/server.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/ClientGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ClientGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/ClientGUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ClientGUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/requests/InviteMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests/InviteMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/requests/RequestMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests/RequestMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/requests/ScheduledMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests/ScheduledMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/requests/RegisterMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests/RegisterMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/ServerGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/ServerGUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerGUIController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +49,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
-  <component name="RunManager" selected="Application.aClient">
+  <component name="RunManager" selected="Application.cClient">
     <configuration name="ClientGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.ClientGUI" />
       <module name="MeetingSchedulerFX" />
@@ -158,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576214621061</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added fixes to saving (Handling possible errors), Added saving client address list in server, reformatted entire code">
+      <created>1576254509298</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1576254509298</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -189,59 +211,64 @@
     </state>
     <state x="869" y="293" key="CommitChangelistDialog2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576214620332" />
     <state x="97" y="91" key="CommitChangelistDialog2/0.23.1680.974@0.23.1680.974" timestamp="1576254508062" />
+    <state width="473" height="466" key="DebuggerActiveHint" timestamp="1576267036761">
+      <screen x="0" y="23" width="1680" height="974" />
+    </state>
+    <state width="473" height="466" key="DebuggerActiveHint/0.23.1680.974@0.23.1680.974" timestamp="1576267036761" />
     <state x="1060" y="440" key="FileChooserDialogImpl" timestamp="1576184061433">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1060" y="440" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576184061433" />
-    <state width="1638" height="262" key="GridCell.Tab.0.bottom" timestamp="1576252880207">
+    <state width="1638" height="324" key="GridCell.Tab.0.bottom" timestamp="1576266915875">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="132" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576216568653" />
-    <state width="1638" height="262" key="GridCell.Tab.0.bottom/0.23.1680.974@0.23.1680.974" timestamp="1576252880207" />
-    <state width="1638" height="262" key="GridCell.Tab.0.center" timestamp="1576252880204">
+    <state width="1638" height="324" key="GridCell.Tab.0.bottom/0.23.1680.974@0.23.1680.974" timestamp="1576266915875" />
+    <state width="1638" height="324" key="GridCell.Tab.0.center" timestamp="1576266915874">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="132" key="GridCell.Tab.0.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576216568652" />
-    <state width="1638" height="262" key="GridCell.Tab.0.center/0.23.1680.974@0.23.1680.974" timestamp="1576252880204" />
-    <state width="1638" height="262" key="GridCell.Tab.0.left" timestamp="1576252880198">
+    <state width="1638" height="324" key="GridCell.Tab.0.center/0.23.1680.974@0.23.1680.974" timestamp="1576266915874" />
+    <state width="1638" height="324" key="GridCell.Tab.0.left" timestamp="1576266915873">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="132" key="GridCell.Tab.0.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576216568652" />
-    <state width="1638" height="262" key="GridCell.Tab.0.left/0.23.1680.974@0.23.1680.974" timestamp="1576252880198" />
-    <state width="1638" height="262" key="GridCell.Tab.0.right" timestamp="1576252880207">
+    <state width="1638" height="324" key="GridCell.Tab.0.left/0.23.1680.974@0.23.1680.974" timestamp="1576266915873" />
+    <state width="1638" height="324" key="GridCell.Tab.0.right" timestamp="1576266915874">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="132" key="GridCell.Tab.0.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576216568653" />
-    <state width="1638" height="262" key="GridCell.Tab.0.right/0.23.1680.974@0.23.1680.974" timestamp="1576252880207" />
-    <state width="1638" height="324" key="GridCell.Tab.1.bottom" timestamp="1576248508711">
+    <state width="1638" height="324" key="GridCell.Tab.0.right/0.23.1680.974@0.23.1680.974" timestamp="1576266915874" />
+    <state width="1638" height="324" key="GridCell.Tab.1.bottom" timestamp="1576266920025">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="414" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576106046091" />
-    <state width="1638" height="324" key="GridCell.Tab.1.bottom/0.23.1680.974@0.23.1680.974" timestamp="1576248508711" />
-    <state width="1638" height="324" key="GridCell.Tab.1.center" timestamp="1576248508711">
+    <state width="1638" height="324" key="GridCell.Tab.1.bottom/0.23.1680.974@0.23.1680.974" timestamp="1576266920025" />
+    <state width="1638" height="324" key="GridCell.Tab.1.center" timestamp="1576266920025">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="414" key="GridCell.Tab.1.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576106046091" />
-    <state width="1638" height="324" key="GridCell.Tab.1.center/0.23.1680.974@0.23.1680.974" timestamp="1576248508711" />
-    <state width="1638" height="324" key="GridCell.Tab.1.left" timestamp="1576248508710">
+    <state width="1638" height="324" key="GridCell.Tab.1.center/0.23.1680.974@0.23.1680.974" timestamp="1576266920025" />
+    <state width="1638" height="324" key="GridCell.Tab.1.left" timestamp="1576266920024">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="414" key="GridCell.Tab.1.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576106046091" />
-    <state width="1638" height="324" key="GridCell.Tab.1.left/0.23.1680.974@0.23.1680.974" timestamp="1576248508710" />
-    <state width="1638" height="324" key="GridCell.Tab.1.right" timestamp="1576248508711">
+    <state width="1638" height="324" key="GridCell.Tab.1.left/0.23.1680.974@0.23.1680.974" timestamp="1576266920024" />
+    <state width="1638" height="324" key="GridCell.Tab.1.right" timestamp="1576266920025">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state width="2517" height="414" key="GridCell.Tab.1.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576106046091" />
-    <state width="1638" height="324" key="GridCell.Tab.1.right/0.23.1680.974@0.23.1680.974" timestamp="1576248508711" />
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1576214622818">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1638" height="324" key="GridCell.Tab.1.right/0.23.1680.974@0.23.1680.974" timestamp="1576266920025" />
+    <state x="572" y="324" key="Vcs.Push.Dialog.v2" timestamp="1576254512654">
+      <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576214622818" />
-    <state x="641" y="386" key="com.intellij.ide.util.TipDialog" timestamp="1576242965337">
+    <state x="572" y="324" key="Vcs.Push.Dialog.v2/0.23.1680.974@0.23.1680.974" timestamp="1576254512654" />
+    <state x="641" y="386" key="com.intellij.ide.util.TipDialog" timestamp="1576263881399">
       <screen x="0" y="23" width="1680" height="974" />
     </state>
     <state x="976" y="522" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1576216861143" />
-    <state x="641" y="386" key="com.intellij.ide.util.TipDialog/0.23.1680.974@0.23.1680.974" timestamp="1576242965337" />
+    <state x="641" y="386" key="com.intellij.ide.util.TipDialog/0.23.1680.974@0.23.1680.974" timestamp="1576263881399" />
     <state x="336" y="440" width="737" height="596" key="find.popup" timestamp="1575865122365">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

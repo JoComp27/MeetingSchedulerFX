@@ -30,7 +30,7 @@ public class RegisterMessage extends Message {
     @Override
     public String serialize() {
 
-        String result = requestType.ordinal() + "$" + clientName + "$" + clientSocketAddress.getPort();
+        String result = requestType.ordinal() + "$" + clientName + "$" + clientSocketAddress.getAddress() + ":" + clientSocketAddress.getPort();
 
         return result;
     }
@@ -42,11 +42,9 @@ public class RegisterMessage extends Message {
 
         this.clientName = resultMsg[1].trim();
 
-        try {
-            this.clientSocketAddress = new InetSocketAddress(InetAddress.getLocalHost(), Integer.parseInt(resultMsg[2].trim()));
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
+        String[] addressPort = resultMsg[2].trim().split(":");
+
+        this.clientSocketAddress = new InetSocketAddress(addressPort[0], Integer.parseInt(addressPort[1]));
 
     }
 }
