@@ -109,13 +109,13 @@ public class ClientGUIController implements Initializable {
             int day = date.getDayOfMonth();
             int hour = timeInt;
 
-            System.out.println("Year: " + year + ", Month: " + month + ", Day: " + day + ", Hour: " + hour);
-
             Calendar calendar = Calendar.getInstance();
             calendar.set(year, month, day, timeInt, 0, 0);
 
 
             client.sendRequest(calendar, min, participantsList, topic);
+            clearInputs(RequestType.Request);
+
         } else if (currentlySelectedRequest.equals(RequestType.Add)) {
 
             Integer meetingNumber = meetingNumberComboBox.getSelectionModel().getSelectedItem();
@@ -200,11 +200,13 @@ public class ClientGUIController implements Initializable {
 
     }
 
-    public void initializeClient(String name) {
+    public void initializeClient(String name, String addressPort) {
 
         this.client = new Client(name);
         Thread thread = new Thread(client);
         thread.start();
+
+        client.setServerAddress(addressPort.split(":"));
 
         Platform.runLater(() -> {
             clientNameLabel.setText("Client Name: " + name);
@@ -234,8 +236,6 @@ public class ClientGUIController implements Initializable {
     }
 
     private void clearInputs(RequestType currentType) {
-        if (currentType != null) {
-
             if (currentType.equals(RequestType.Request)) {
 
                 Platform.runLater(() -> {
@@ -252,8 +252,6 @@ public class ClientGUIController implements Initializable {
                     meetingNumberComboBox.getSelectionModel().clearSelection();
                 });
             }
-
-        }
     }
 
     private void updateAvailableInputFields() {

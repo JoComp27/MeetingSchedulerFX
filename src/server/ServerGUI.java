@@ -28,8 +28,6 @@ public class ServerGUI extends Application {
 
         ServerGUIController controller = fxmlLoader.<ServerGUIController>getController();
 
-        controller.initializeServer();
-
         //Checking if previous
         File saveFile = new File("server.txt");
 
@@ -51,10 +49,12 @@ public class ServerGUI extends Application {
                 switch (answer) {
                     case "y":
                         System.out.println("Save will be restored for server");
+                        controller.initializeServer();
                         controller.loadServer();
                         break;
                     case "n":
                         System.out.println("Save will not be restored for server");
+                        controller.initializeServer();
                         break;
                     default:
                         System.out.println("INVALID SAVE RESTORE ANSWER");

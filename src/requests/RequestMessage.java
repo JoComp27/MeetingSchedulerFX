@@ -74,7 +74,7 @@ public class RequestMessage extends Message {
         }
 
 
-        stringMessage += "$" + topic; // TOPIC
+        stringMessage += "$" + topic.trim(); // TOPIC
 
         return stringMessage;
     }

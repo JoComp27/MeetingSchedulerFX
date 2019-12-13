@@ -413,6 +413,8 @@ public class Client implements Runnable {
 
     private void handleScheduled(ScheduledMessage message) {
 
+        System.out.println(clientName + " received Schedule : " + message);
+
         //Check if request RQ# is part of my list and is in standby (Only Host should receive)
         for (int i = 0; i < meetings.size(); i++) {
             if (meetings.get(i).getRequestNumber() == message.getRequestNumber()) {
@@ -425,10 +427,12 @@ public class Client implements Runnable {
                             + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "]: ";
                     FileReaderWriter.WriteFile("log", currentTime + "Scheduled for '" + clientName + "' " + message.serialize() + "\n", true);
                     ClientLog.add(currentTime + "Scheduled for '" + clientName + "' " + message.serialize());
-
+                    return;
                 }
+                System.out.println("!meetings.get(i).getState() && meetings.get(i).getUserType() is false");
                 return;
             }
+            System.out.println(meetings.get(i).getRequestNumber()  + " != " + message.getRequestNumber());
         }
 
     }
@@ -553,6 +557,12 @@ public class Client implements Runnable {
 
     public List<String> getLog() {
         return ClientLog;
+    }
+
+    public void setServerAddress(String[] split) {
+
+        this.serverAddress = new InetSocketAddress(split[0], Integer.parseInt(split[1]));
+
     }
 
     public class ClientListen implements Runnable {

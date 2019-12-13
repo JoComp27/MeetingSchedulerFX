@@ -66,7 +66,7 @@ public class InviteMessage extends Message {
         msg += requestType.ordinal() + "$";
         msg += meetingNumber + "$";
         msg += CalendarUtil.calendarToString(calendar) + "$";
-        msg += topic + "$";
+        msg += topic.trim() + "$";
         msg += requester;
 
         return msg;

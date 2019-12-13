@@ -30,7 +30,7 @@ public class ClientGUI extends Application {
 
         String clientName = getParameters().getRaw().get(0);
 
-        controller.initializeClient(clientName);
+        String addressPort = getParameters().getRaw().get(1);
 
         String fileName = "saveFile_" + clientName;
 
@@ -55,10 +55,12 @@ public class ClientGUI extends Application {
                 switch (answer) {
                     case "y":
                         System.out.println("Save will be restored for client " + clientName);
+                        controller.initializeClient(clientName, addressPort);
                         controller.restoreFromSave(fileName);
                         break;
                     case "n":
                         System.out.println("Save will not be restored for client");
+                        controller.initializeClient(clientName, addressPort);
                         break;
                     default:
                         System.out.println("INVALID SAVE RESTORE ANSWER");
