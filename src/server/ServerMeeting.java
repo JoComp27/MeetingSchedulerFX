@@ -113,12 +113,16 @@ public class ServerMeeting {
         this.requestMessage = requestMessage;
 
         this.acceptedParticipants = Integer.parseInt(subMessages[2]);
-        this.roomNumber = Integer.parseInt(subMessages[4]);
-        this.organizer = subMessages[5];
+        this.roomNumber = Integer.parseInt(subMessages[3]);
+        this.organizer = subMessages[4];
 
-        if (subMessages.length > 5 && !subMessages[6].isEmpty()) {
+        if (subMessages.length > 5 && !subMessages[5].isEmpty()) {
 
-            String[] acceptedMap = subMessages[6].split("@");
+            String[] acceptedMap = subMessages[5].split("@");
+
+            if(this.acceptedMap == null){
+                this.acceptedMap = new HashMap<>();
+            }
 
             for (String accMsg : acceptedMap) {
 
