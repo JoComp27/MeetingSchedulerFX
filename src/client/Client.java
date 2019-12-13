@@ -18,6 +18,7 @@ public class Client implements Runnable {
     private static final AtomicInteger countID = new AtomicInteger(0);  //Thread safe auto increment for RequestNumber
 
     private final int serverPort = 9997;
+    private final int millisBetweenSaves = 2000;
 
     private String clientName;
 
@@ -27,6 +28,7 @@ public class Client implements Runnable {
 
     private ArrayList<ClientMeeting> meetings;
     private HashMap<String, Boolean> availability;
+
     private List<String> ClientLog;
 
     public Client(String clientName) {
@@ -690,7 +692,7 @@ public class Client implements Runnable {
 
             while (true) {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(millisBetweenSaves);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -719,9 +721,13 @@ public class Client implements Runnable {
             String[] meetings = subMessage[0].split(";");
 
             for (String meeting : meetings) {
-                ClientMeeting newMeeting = new ClientMeeting();
-                newMeeting.deserialize(meeting);
-                this.meetings.add(newMeeting);
+
+                if(!meeting.isEmpty()){
+                    ClientMeeting newMeeting = new ClientMeeting();
+                    newMeeting.deserialize(meeting);
+                    this.meetings.add(newMeeting);
+                }
+
             }
         }
 
@@ -729,7 +735,10 @@ public class Client implements Runnable {
             String[] availability = subMessage[1].split(";");
 
             for (String available : availability) {
-                this.availability.put(available, true);
+                if(!available.isEmpty()){
+                    this.availability.put(available, true);
+
+                }
             }
         }
 
