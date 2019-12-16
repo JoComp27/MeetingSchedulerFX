@@ -27,9 +27,6 @@ public class ClientGUIController implements Initializable {
 
     private Client client;
 
-    private ArrayList<Integer> availableMeetingNumber;
-    private ArrayList<String> outputMessages;
-
     private RequestType currentlySelectedRequest;
 
     private ToggleGroup requestTypesToggleGroup;
@@ -149,9 +146,6 @@ public class ClientGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        outputMessages = new ArrayList<>();
-        availableMeetingNumber = new ArrayList<>();
 
         requestTypesToggleGroup = new ToggleGroup();
         requestRadioButton.setToggleGroup(requestTypesToggleGroup);

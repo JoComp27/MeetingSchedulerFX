@@ -361,6 +361,10 @@ public class Client implements Runnable {
                     }
                 }
 
+                synchronized (availability){
+                    availability.put(CalendarUtil.calendarToString(newMeeting.getCalendar()), true);
+                }
+
                 //Send Accept
                 sendAccept(newMeeting.getMeetingNumber());
             } else {
